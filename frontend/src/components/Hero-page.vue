@@ -66,4 +66,8 @@ button{
   cursor: pointer;
 }
 
+button:hover{
+  font-weight: 800;
+}
+
 </style>
