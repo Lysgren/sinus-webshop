@@ -1,7 +1,7 @@
 <template>
-  <div class="cart" >
+  <div class="cart">
     <h2>Shopping cart</h2>
-    <cartItem v-for="item in items" :key="item.id" :item="item" />
+    <cartItem v-for="item in items" :key="item._id" :item="item" />
     <div class="continue">
       <router-link to="/checkout">Continue</router-link>
       <p>Klicka för att komma vidare till checkout</p>
@@ -17,15 +17,13 @@ export default {
   },
   methods: {
     closeWindow() {
-      this.$emit('close')
-    }
+      this.$emit("close");
+    },
   },
-  computed:{
-
-    items(){
-      return this.$store.getters.shoppingCart
-    }
-  
+  computed: {
+    items() {
+      return this.$store.getters.shoppingCart;
+    },
   },
 };
 </script>
@@ -42,7 +40,9 @@ export default {
   margin: auto;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.541);
   z-index: 14;
-  // överdrev 
+  display: flex;
+  flex-direction: column;
+  // överdrev
 }
 
 .continue {

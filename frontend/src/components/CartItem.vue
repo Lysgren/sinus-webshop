@@ -1,14 +1,14 @@
 <template>
   <div class="item">
-    <img :src="item.img" alt="hoodie" />
+    <img :src="require(`@/assets/${item.imgFile}`)" alt="product" />
+
     <div class="align-left">
-      <p>{{ item.dummy }}</p>
-      <p>färg</p>
-      <p>Artikelnummer: {{ item.id }}</p>
+      <p>{{ item.title }}</p>
+      <p>Artikelnummer: {{ item._id }}</p>
     </div>
     <div>
-      <p>antal</p>
-      <p>SIZE</p>
+      <p>antal: {{item.amount}}</p>
+      <p>SIZE {{ item.shortDesc }}</p>
     </div>
     <div class="align-right">
       <p>X</p>
@@ -29,6 +29,7 @@ export default {
   grid-template-columns: 0.5fr auto 1fr 1fr;
   border: 1px solid black;
   margin: 1rem;
+  height:fit-content;
 }
 
 .item img {
