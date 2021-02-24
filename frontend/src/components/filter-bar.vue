@@ -1,6 +1,10 @@
 <template>
   <div class="nav-bar">
     <div class="nav-bar-filter">
+      <div class="nav-bar-checkbox">
+        <input type="checkbox" name="All" v-model="All" />
+        <label for="item">All</label>
+      </div>
       <div
         class="nav-bar-checkbox"
         v-for="(item, index) in Object.keys(options)"
@@ -22,9 +26,16 @@
 export default {
   data() {
     return {
-      All: true,
-      options: { Hoodies: true, "T-shirt": true, Wheels: true, Caps: true },
+      All: false,
+      options: { Hoodies: false, "T-shirt": false, Wheels: false, Caps: false },
     };
+  },
+  watch: {
+    All(value) {
+      for (let option in this.options) {
+        value ? (this.options[option] = true) : (this.options[option] = false);
+      }
+    },
   },
 };
 </script>

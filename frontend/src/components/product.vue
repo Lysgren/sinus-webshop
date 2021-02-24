@@ -3,8 +3,8 @@
     <div class="img">
       <img src="@/assets/wheel-wave.png" alt="" />
     </div>
-    <h4>title {{ productInfo }}</h4>
-    <p>699kr</p>
+    <h4 :style="{color:color}">title {{ productInfo }}</h4>
+    <p :style="{color:color}">699kr</p>
   </div>
 </template>
 
@@ -12,7 +12,8 @@
 export default {
   props: {
     productInfo: Number,
-    // byts mot object
+    color: String
+    // byts mot object från API
   },
 };
 </script>
@@ -28,8 +29,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: 0.5px solid rgba(0, 0, 0, 0.15);
   .img {
     grid-column: 1 / end;
     grid-row: 1/5;

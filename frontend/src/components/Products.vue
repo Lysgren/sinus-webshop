@@ -7,6 +7,8 @@
           v-for="(item, index) in productInfo"
           :key="index"
           :productInfo="item"
+          :color="'black'"
+          class="product"
         />
       </div>
       <img src="@/assets/productArrows.svg" alt="" />
@@ -25,6 +27,7 @@ export default {
   data() {
     return {
       productInfo: 6,
+      // productInfo bytas mot Object från API
     };
   },
 };
@@ -43,6 +46,7 @@ export default {
     width: fit-content;
   }
 }
+// flyttas till gemensam css då den används av oTMAL
 .product-list {
   padding: 0.8rem;
   display: grid;
@@ -51,5 +55,9 @@ export default {
   gap: 0.4rem;
   grid-auto-flow: row;
   height: fit-content;
+  .product {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+  }
 }
 </style>
