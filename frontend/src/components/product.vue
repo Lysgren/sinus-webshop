@@ -1,27 +1,26 @@
 <template>
   <div class="product" @click="addToCart">
     <div class="img">
-      <img src="@/assets/wheel-wave.png" alt="" />
+      <img :src="require(`@/assets/${product.imgFile}`)" alt="" />
     </div>
-    <h4 :style="{ color: color }">title {{ productInfo }}</h4>
-    <p :style="{ color: color }">699kr</p>
+    <h4 :style="{ color: color }">{{ product.title }}</h4>
+    <p :style="{ color: color }">{{ product.price }} kr</p>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    productInfo: Object,
+    product: Object,
     color: String,
-    // byts mot object från API
   },
 
   methods: {
     addToCart() {
-      this.$store.commit("addToCart", this.productInfo);
+      this.$store.commit("addToCart", this.product);
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -30,6 +29,7 @@ export default {
   padding: 0;
 }
 .product {
+  cursor: pointer;
   padding: 0.8rem;
   min-width: 8rem;
   display: grid;

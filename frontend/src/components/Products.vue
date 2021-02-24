@@ -1,12 +1,12 @@
 <template>
   <div class="products-wrapper">
-    <filterBar />
+    <FilterBar />
     <div class="products">
       <div class="product-list">
-        <product
-          v-for="(item, index) in productInfo"
-          :key="index"
-          :productInfo="item"
+        <Product
+          v-for="product of products"
+          :key="product._id"
+          :product="product"
           :color="'black'"
           class="product"
         />
@@ -17,22 +17,20 @@
 </template>
 
 <script>
-import product from "@/components/product.vue";
-import filterBar from "@/components/filter-bar.vue";
+import Product from '@/components/product.vue'
+import FilterBar from '@/components/filter-bar.vue'
+
 export default {
-  components: {
-    product,
-    filterBar,
+
+  computed: {
+    products() {
+      return this.$store.getters.getProducts
+    }
   },
-  data() {
-    return {
-      productInfo: [{dummy: 'byxa', id: 3},
-      {dummy: 'byxa', id: 4}]
-      ,
-      // productInfo bytas mot Object från API
-    };
-  },
-};
+
+  components: { Product, FilterBar }
+
+}
 </script>
 
 <style lang="scss" scoped>
