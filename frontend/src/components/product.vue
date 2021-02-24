@@ -1,5 +1,5 @@
 <template>
-  <div class="product">
+  <div class="product" @click="addToCart">
     <div class="img">
       <img src="@/assets/wheel-wave.png" alt="" />
     </div>
@@ -9,11 +9,31 @@
 </template>
 
 <script>
+
+
 export default {
   props: {
     productInfo: Number,
     color: String
     // byts mot object från API
+  },
+
+  computed:{
+orderList(){
+  return this.$store.state.orders
+}
+
+  },
+
+  methods:{
+    addToCart(){
+
+      this.$store.commit('addToCart')
+
+      // this.$store.state.orders.shoppingCart.push({typ:'tröja'})
+    },
+
+
   },
 };
 </script>
