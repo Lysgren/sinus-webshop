@@ -42,7 +42,6 @@ export default {
     display: flex;
     flex-direction: column;
     background-color: white;
-    
     height: auto;
     padding: 4em 2em;
 }
