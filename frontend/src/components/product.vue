@@ -3,37 +3,23 @@
     <div class="img">
       <img src="@/assets/wheel-wave.png" alt="" />
     </div>
-    <h4 :style="{color:color}">title {{ productInfo }}</h4>
-    <p :style="{color:color}">699kr</p>
+    <h4 :style="{ color: color }">title {{ productInfo }}</h4>
+    <p :style="{ color: color }">699kr</p>
   </div>
 </template>
 
 <script>
-
-
 export default {
   props: {
-    productInfo: Number,
-    color: String
+    productInfo: Object,
+    color: String,
     // byts mot object från API
   },
 
-  computed:{
-orderList(){
-  return this.$store.state.orders
-}
-
-  },
-
-  methods:{
-    addToCart(){
-
-      this.$store.commit('addToCart')
-
-      // this.$store.state.orders.shoppingCart.push({typ:'tröja'})
+  methods: {
+    addToCart() {
+      this.$store.commit("addToCart", this.productInfo);
     },
-
-
   },
 };
 </script>

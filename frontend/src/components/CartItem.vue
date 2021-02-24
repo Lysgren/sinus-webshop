@@ -2,17 +2,17 @@
   <div class="item">
     <img :src="item.img" alt="hoodie" />
     <div class="align-left">
-      <p>{{ item.item }}</p>
-      <p>{{ item.color }}</p>
+      <p>{{ item.dummy }}</p>
+      <p>färg</p>
       <p>Artikelnummer: {{ item.id }}</p>
     </div>
     <div>
-      <p>{{ item.quantity }}</p>
-      <p>SIZE: {{ item.size }}</p>
+      <p>antal</p>
+      <p>SIZE</p>
     </div>
     <div class="align-right">
       <p>X</p>
-      <p>{{ item.price }} kr</p>
+      <p>pris kr</p>
     </div>
   </div>
 </template>

@@ -20,44 +20,18 @@ export default {
       this.$emit('close')
     }
   },
-  data() {
-    return {
-      items: [
-        {
-          id: 13434,
-          item: "tröja",
-          price: "124",
-          img: "'@/assets/hoodie-ocean.png'",
-          quantity: 1,
-          color: "blue",
-          size: "S",
-        },
-        {
-          id: 223424,
-          item: "tröja",
-          price: "173",
-          img: "'@/assets/hoodie-ocean.png'",
-          quantity: 1,
-          color: "blue",
-          size: "S",
-        },
-        {
-          id: 32344,
-          item: "tröja",
-          price: "383",
-          img: "'@/assets/hoodie-ocean.png'",
-          quantity: 1,
-          color: "blue",
-          size: "M",
-        },
-      ],
-    };
+  computed:{
+
+    items(){
+      return this.$store.getters.shoppingCart
+    }
+  
   },
 };
 </script>
 <style lang="scss" scoped>
 .cart {
-  min-width: 40rem;
+  width: 40rem;
   height: fit-content;
   background-color: #f4f4f4;
   position: fixed;

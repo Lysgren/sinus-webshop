@@ -1,21 +1,16 @@
-
-
 export default {
-
-
-
   state: {
+    shoppingCart: [{dummy: 'tröja', id:1}, {dummy: 'tröja', id:2}],
+  },
 
-    shoppingCart: [],
+  getters:{
+    shoppingCart: state => state.shoppingCart
   },
   mutations: {
-
-    addToCart(state){
-      console.log(state)
-    }
+    addToCart(state, item) {
+      state.shoppingCart.push(item);
+    },
   },
-  actions: {
-  },
-  modules: {
-  }
-}
+  actions: {},
+  modules: {},
+};

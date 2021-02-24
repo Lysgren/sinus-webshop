@@ -26,7 +26,9 @@ export default {
   },
   data() {
     return {
-      productInfo: 6,
+      productInfo: [{dummy: 'byxa', id: 3},
+      {dummy: 'byxa', id: 4}]
+      ,
       // productInfo bytas mot Object från API
     };
   },
