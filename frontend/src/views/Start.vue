@@ -1,8 +1,10 @@
 <template>
   <div class="home">
     <Navbar />
+    <div class="product-components">
     <HeroPage />
     <Products />
+    </div>
     <Footer />
   </div>
 </template>
@@ -17,3 +19,15 @@ export default {
  components: { Navbar, HeroPage, Products, Footer }
 }
 </script>
+
+<style scoped>
+
+.product-components{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3em 0;
+}
+
+</style>
