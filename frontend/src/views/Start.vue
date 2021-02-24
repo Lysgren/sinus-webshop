@@ -16,6 +16,11 @@ import Products from '@/components/Products.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
+
+  mounted() {
+    this.$store.dispatch('fetchProducts')
+  },
+
  components: { Navbar, HeroPage, Products, Footer }
 }
 </script>
