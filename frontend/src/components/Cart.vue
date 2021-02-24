@@ -1,12 +1,9 @@
 <template>
-  <div class="cart">
-    <h2>Shopping cart</h2>
+  <div>
+    
     <cartItem v-for="item in items" :key="item._id" :item="item" />
-    <div class="continue">
-      <router-link to="/checkout">Continue</router-link>
-      <p>Klicka för att komma vidare till checkout</p>
-    </div>
-    <a href="#" @click="closeWindow()">X</a>
+    
+    
   </div>
 </template>
 <script>
@@ -15,11 +12,7 @@ export default {
   components: {
     cartItem,
   },
-  methods: {
-    closeWindow() {
-      this.$emit("close");
-    },
-  },
+ 
   computed: {
     items() {
       return this.$store.getters.shoppingCart;
@@ -28,31 +21,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.cart {
-  width: 40rem;
-  height: fit-content;
-  background-color: #f4f4f4;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.541);
-  z-index: 14;
-  display: flex;
-  flex-direction: column;
-  // överdrev
-}
 
-.continue {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin: 1rem;
-}
 
-.continue p {
-  font-size: 0.6em;
-}
+
+
+
 </style>

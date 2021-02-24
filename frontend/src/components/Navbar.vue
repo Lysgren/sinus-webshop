@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import shoppingCart from '@/components/Cart.vue'
+import shoppingCart from '@/components/CartContainer.vue'
 export default {
 
   data(){return{
