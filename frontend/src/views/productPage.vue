@@ -42,7 +42,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* margin: 4em 0; */
+  margin: 3em 0;
 }
 
 .dao{
