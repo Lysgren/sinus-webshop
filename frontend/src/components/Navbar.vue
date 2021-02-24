@@ -1,7 +1,7 @@
 <template>
   <div class="navbar" >
     <img src="@/assets/sinus-logo.svg" alt="sinus logo" />
-    <img class="cart" @click="openCart" src="@/assets/icon-bag-white.svg" alt="shoppingcart" />
+    <img class="cart-img" @click="openCart" src="@/assets/icon-bag-white.svg" alt="shoppingcart" />
     <shoppingCart v-if="displayCart" @close="openCart"/>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
   margin: 0;
   padding: 0.4rem 1rem;
 }
-.cart {
+.cart-img {
   width: 1rem;
   cursor: pointer;
 }
