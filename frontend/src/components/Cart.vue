@@ -1,10 +1,9 @@
 <template>
   <div class="cart">
     <h2>Shopping cart</h2>
-
     <cartItem v-for="item in items" :key="item.id" :item="item" />
     <div class="continue">
-      <button>Continue</button>
+      <router-link to="/checkout">Continue</router-link>
       <p>Klicka för att komma vidare till checkout</p>
     </div>
   </div>
@@ -50,7 +49,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .cart {
   min-width: 40rem;
   height: fit-content;
@@ -62,6 +61,8 @@ export default {
   left: 0;
   margin: auto;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.541);
+  z-index: 14;
+  // överdrev 
 }
 
 .continue {
