@@ -12,7 +12,12 @@ import HeroPage from '@/components/Hero-page.vue'
 import Products from '@/components/Products.vue'
 
 export default {
- components: { HeroPage, Products}
+
+  mounted() {
+    this.$store.dispatch('fetchProducts')
+  },
+
+  components: { HeroPage, Products}
 }
 </script>
 
