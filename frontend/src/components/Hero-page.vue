@@ -37,6 +37,10 @@ export default {
 
 .info-text{
   margin-right: 18em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .image{
