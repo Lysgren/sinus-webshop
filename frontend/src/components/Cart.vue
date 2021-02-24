@@ -1,11 +1,12 @@
 <template>
-  <div class="cart">
+  <div class="cart" >
     <h2>Shopping cart</h2>
     <cartItem v-for="item in items" :key="item.id" :item="item" />
     <div class="continue">
       <router-link to="/checkout">Continue</router-link>
       <p>Klicka för att komma vidare till checkout</p>
     </div>
+    <a href="#" @click="closeWindow()">X</a>
   </div>
 </template>
 <script>
@@ -13,6 +14,11 @@ import cartItem from "@/components/CartItem.vue";
 export default {
   components: {
     cartItem,
+  },
+  methods: {
+    closeWindow() {
+      this.$emit('close')
+    }
   },
   data() {
     return {
