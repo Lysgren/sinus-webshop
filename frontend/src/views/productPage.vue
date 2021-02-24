@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class=".product-page home">
     <Navbar />
     <div></div>
     <otherMAL />
@@ -8,11 +8,15 @@
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
 import OtherMAL from '@/components/otherMayAlsoLike.vue'
-import Footer from '@/components/Footer.vue'
 
 export default {
- components: { Navbar, OtherMAL, Footer }
+ components: { OtherMAL }
 }
 </script>
+<style scoped>
+.product-page {
+  height: 100%;
+  width: 100%;
+}
+</style>
