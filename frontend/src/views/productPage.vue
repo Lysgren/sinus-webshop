@@ -1,24 +1,20 @@
 <template>
   <div class="home">
-    <Navbar />
     <div class="home-wrapper">
       <div class="dao">
           <Product-details :product="currentProduct"/>
           <OtherMAL />
       </div>
     </div>    
-    <Footer />
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
 import OtherMAL from '@/components/otherMayAlsoLike.vue'
-import Footer from '@/components/Footer.vue'
 import ProductDetails from '../components/Product-details.vue'
 
 export default {
-  components: { Navbar, OtherMAL, Footer, ProductDetails },
+  components: { OtherMAL, ProductDetails },
   data(){return{
    currentProduct: {
           id: 13434,
