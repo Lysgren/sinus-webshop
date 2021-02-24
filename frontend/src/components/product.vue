@@ -54,6 +54,9 @@ orderList(){
     grid-row: 1/5;
     justify-self: stretch;
     align-self: stretch;
+    display: flex;
+    align-content: center;
+    justify-content: center;
     img {
       object-fit: contain;
       max-height: 100%;
