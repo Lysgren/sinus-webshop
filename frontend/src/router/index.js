@@ -8,22 +8,9 @@ import Checkout from '../views/checkoutView.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Start',
-    component: Start
-  },
-  {
-    path: '/productPage',
-    name: 'ProductPage',
-    component: ProductPage
-  },
-  {
-    path: '/checkout',
-    name: 'Checkout',
-    component: Checkout
-  },
-
+  { path: '/', name: 'Start', component: Start },
+  { path: '/productPage/:id', name: 'ProductPage', component: ProductPage },
+  { path: '/checkout', name: 'Checkout', component: Checkout },
 ]
 
 const router = new VueRouter({

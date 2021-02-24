@@ -2,29 +2,32 @@
   <div class="home">
     <div class="home-wrapper">
       <div class="dao">
-          <Product-details :product="currentProduct"/>
-          <OtherMAL />
+          <Product-details :product="product"/>
+          <!-- <OtherMAL /> -->
       </div>
     </div>    
   </div>
 </template>
 
 <script>
-import OtherMAL from '@/components/otherMayAlsoLike.vue'
+// import OtherMAL from '@/components/otherMayAlsoLike.vue'
 import ProductDetails from '../components/Product-details.vue'
 
 export default {
-  components: { OtherMAL, ProductDetails },
-  data(){return{
-   currentProduct: {
-          id: 13434,
-          item: "hoodie",
-          price: "499",
-          img: "'@/assets/hoodie-ocean.png'",
-          color: "ocean"
+
+  computed: {
+    product() {
+      return this.$store.getters.getSingleProduct
     }
-  }}
+  },
+  created() {
+    this.$store.dispatch('fetchSingleProduct', this.$route.params.id)
+  },
+
+  components: { ProductDetails }
+
 }
+
 </script>
 
 <style scoped>

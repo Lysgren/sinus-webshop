@@ -1,8 +1,10 @@
 <template>
-  <div class="product" @click="addToCart">
+  <div class="product">
     <div class="img">
       <img :src="require(`@/assets/${product.imgFile}`)" alt="" />
     </div>
+    <button @click="addToCart()">Add to cart</button>
+    <button  @click="viewMore(product._id)">View more</button>
     <h4 :style="{ color: color }">{{ product.title }}</h4>
     <p :style="{ color: color }">{{ product.price }} kr</p>
   </div>
@@ -19,7 +21,10 @@ export default {
     addToCart() {
       this.$store.commit("addToCart", this.product);
     },
-  },
+    viewMore(id) {
+      this.$router.push(`productPage/${id}`)
+    }
+  }
 }
 </script>
 
@@ -29,7 +34,6 @@ export default {
   padding: 0;
 }
 .product {
-  cursor: pointer;
   padding: 0.8rem;
   min-width: 8rem;
   display: grid;
