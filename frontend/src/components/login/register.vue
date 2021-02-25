@@ -2,7 +2,7 @@
   <div class="login-user">
     <div class="login-user-inputs" v-for="(item, index) in Object.keys(inputs)" :key="index">
       <label :for="item">{{ item }}</label>
-      <input type="text" :name="item" v-model="inputs[index]"/>
+      <input type="text" :name="item" v-model="inputs[item]"/>
     </div>
     <button @click="clickMe()">Register User</button>
   </div>

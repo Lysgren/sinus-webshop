@@ -6,7 +6,7 @@
       :key="index"
     >
       <label :for="item">{{ item }}</label>
-      <input type="text" :name="item" v-model="inputs[index]" />
+      <input type="text" :name="item" v-model="inputs[item]" />
     </div>
     <button @click="clickMe()">Edit Profile</button>
   </div>
