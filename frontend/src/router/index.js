@@ -9,11 +9,6 @@ import Login from '../views/loginView.vue'
 Vue.use(VueRouter)
 
 const routes = [
-<<<<<<< HEAD
-  { path: '/', name: 'Start', component: Start },
-  { path: '/productPage/:id', name: 'ProductPage', component: ProductPage },
-  { path: '/checkout', name: 'Checkout', component: Checkout },
-=======
   {
     path: '/',
     name: 'Start',
@@ -35,7 +30,6 @@ const routes = [
     component: Login
   },
 
->>>>>>> logginView
 ]
 
 const router = new VueRouter({

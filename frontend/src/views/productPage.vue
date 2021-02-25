@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
   <div class="home">
-=======
-  <div class=".product-page home">
->>>>>>> logginView
     <div class="home-wrapper">
       <div class="dao">
           <Product-details :product="product"/>
