@@ -3,8 +3,8 @@
     <div class="img">
       <img :src="require(`@/assets/${product.imgFile}`)" alt="" />
     </div>
-    <button @click="addToCart()">Add to cart</button>
-    <button  @click="viewMore(product._id)">View more</button>
+    <button class="add-cart" @click="addToCart()">Add to cart</button>
+    <button class="view-more" @click="viewMore(product._id)">View more</button>
     <h4 :style="{ color: color }">{{ product.title }}</h4>
     <p :style="{ color: color }">{{ product.price }} kr</p>
   </div>
@@ -19,13 +19,13 @@ export default {
 
   methods: {
     addToCart() {
-      this.$store.commit("addToCart", this.product);
+      this.$store.commit("addToCart", this.product)
     },
     viewMore(id) {
       this.$router.push(`productPage/${id}`)
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -69,6 +69,15 @@ export default {
     grid-row: 5 / end;
     justify-self: flex-end;
     align-self: flex-end;
+  }
+  .add-cart {
+    grid-column: 1/2;
+    grid-row: 2 / 4;
+  }
+  .view-more {
+    grid-column: 1/2;
+    grid-row: 5 / end;
+    justify-self: flex-end;
   }
 }
 </style>
