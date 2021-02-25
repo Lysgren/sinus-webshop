@@ -2,10 +2,10 @@
   <div class="other-M-A-L">
     <h3>OTHERS ALSO LIKED...</h3>
     <div class="product-list">
-      <product
-        v-for="(item, index) in productInfo"
-        :key="index"
-        :productInfo="item"
+      <Product
+        v-for="product of recommendedProducts"
+        :key="product._id"
+        :product="product"
         :color="'white'"
         class="product"
       />
@@ -14,18 +14,24 @@
 </template>
 
 <script>
-import product from "@/components/product.vue";
+import Product from "@/components/product.vue";
 export default {
-  components: {
-    product,
+
+  computed: {
+    recommendedProducts() {
+      return this.$store.getters.getRelevantProducts
+    }
   },
-  data() {
-    return {
-      productInfo: 3,
-      // productInfo bytas mot Object från API
-    };
+
+  mounted() {
+    if (this.$store.getters.getProducts == false) {
+      this.$store.dispatch('fetchProducts')
+    }
   },
-};
+
+  components: { Product },
+
+}
 </script>
 
 <style lang="scss" scoped>

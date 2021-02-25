@@ -6,14 +6,14 @@
 
         <div class="prod">
             <div class="image">
-                <img src="@/assets/hoodie-ash.png" class="item-img" alt="">
+                <img :src="require(`@/assets/${product.imgFile}`)" class="item-img" alt="">
             </div>
             <div class="details">
-                <h2>{{product.item}}</h2>
-                <p class="bold">ART.NR: {{product.id}}</p>
+                <h2>{{ product.item }}</h2>
+                <p class="bold">ART.NR: {{ product.id }}</p>
                 <p>{{product.color}}</p>
-                <p class="bold">{{product.price}}SEK</p>
-                <p class="center desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia soluta cum illo voluptas ad. Odio voluptatibus cupiditate voluptatum sunt libero?</p>
+                <p class="bold">{{ product.price }} SEK</p>
+                <p class="center desc">{{ product.longDesc }}</p>
                 <select name="" id="">
                     <option>SIZE:</option>
                     <option value="s">S</option>
