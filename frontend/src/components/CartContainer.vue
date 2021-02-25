@@ -13,7 +13,7 @@
         <h4>TOTAL:</h4>
         <p>{{orderTotal}} SEK</p>
     </span>
-    
+    <button @click="placeOrder">place order</button>
     <div class="continue">
       <router-link to="/checkout"><button> Continue</button></router-link>
       <p>Klicka för att komma vidare till checkout</p>
@@ -30,6 +30,10 @@ export default {
     closeWindow() {
       this.$emit("close");
     },
+
+    placeOrder(){
+      this.$store.dispatch('placeOrder')
+    }
   
   },
 

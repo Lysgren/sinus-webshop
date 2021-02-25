@@ -15,7 +15,7 @@ export default {
  
   computed: {
     items() {
-      return this.$store.getters.shoppingCart;
+      return this.$store.getters.getCart;
     },
   },
 };
