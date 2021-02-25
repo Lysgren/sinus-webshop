@@ -2,7 +2,7 @@
   <div class="products-wrapper">
     <FilterBar />
     <div class="products">
-      <div class="product-list">
+      <div class="product-list" v-if="products">
         <Product
           v-for="product of products"
           :key="product._id"
@@ -11,6 +11,7 @@
           class="product"
         />
       </div>
+      <div v-else>Loading...</div>
       <img src="@/assets/productArrows.svg" alt="" />
     </div>
   </div>

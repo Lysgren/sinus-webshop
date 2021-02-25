@@ -2,16 +2,17 @@
   <div class="home">
     <div class="home-wrapper">
       <div class="dao">
-          <Product-details :product="product"/>
-          <!-- <OtherMAL /> -->
+          <Product-details v-if="product" :product="product"/>
+          <div v-else>Loading...</div>
+          <OtherMAL />
       </div>
     </div>    
   </div>
 </template>
 
 <script>
-// import OtherMAL from '@/components/otherMayAlsoLike.vue'
 import ProductDetails from '../components/Product-details.vue'
+import OtherMAL from '@/components/otherMayAlsoLike.vue'
 
 export default {
 
@@ -20,11 +21,12 @@ export default {
       return this.$store.getters.getSingleProduct
     }
   },
-  created() {
+
+  mounted() {
     this.$store.dispatch('fetchSingleProduct', this.$route.params.id)
   },
 
-  components: { ProductDetails }
+  components: { ProductDetails, OtherMAL }
 
 }
 
@@ -36,15 +38,14 @@ export default {
   background-color: #DCDCDC;
 }
 
-.home-wrapper{
+.home-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* margin: 4em 0; */
 }
 
-.dao{
+.dao {
   width: 90vw;
   height: auto;
 }
