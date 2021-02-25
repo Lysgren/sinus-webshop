@@ -4,6 +4,7 @@ import Start from '../views/Start.vue'
 import ProductPage from '../views/productPage.vue'
 import Checkout from '../views/checkoutView.vue'
 import Login from '../views/loginView.vue'
+import Edit from '../views/editProfile.vue'
 
 
 Vue.use(VueRouter)
@@ -28,6 +29,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/edit',
+    name: 'Edit',
+    component: Edit
   },
 
 ]
