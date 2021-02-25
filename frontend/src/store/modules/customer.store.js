@@ -5,14 +5,23 @@ export default {
 
   state: {
     userData: {},
-    userToken: ''
+    userToken: '',
+    error: false
   },
 
   mutations: {
     setToken:(state, payload) => state.userToken = payload,
-    setUserData:(state, payload) => state.userData = payload
+    setUserData:(state, payload) => state.userData = payload,
+    setError(state){
+        state.error = true
+        setTimeout(()=>{state.error = false}, 2000) 
+    }
   },
-
+  getters: {
+      getError:(state) => state.error,
+      getUserToken:(state) => state.userToken,
+      getUserData:(state) => state.userData
+  },
   actions: {
     async signIn(context, payload){
             const request = await fetch('http://localhost:5000/api/auth', {
@@ -22,11 +31,18 @@ export default {
                 },
                 body: JSON.stringify(payload) 
             })
-            const responseData = await request.json()
+           //await console.log(request.status)
+            let responseData = 0
+            if(request.status == 200) {
+                responseData = await request.json()
+            } else{
+                context.commit('setError')
+            }
+            
             context.commit('setToken', responseData.token)
-            //console.log(responseData.token)
+            context.commit('setUserData', responseData.user)
+            sessionStorage.setItem('token', responseData.token)
         },
-
     async getUser(context){
           //console.log(context.userToken)
           const request = await fetch('http://localhost:5000/api/me', {
@@ -39,7 +55,7 @@ export default {
           console.log(responseData)
       },
       
-      async registerUser(context, payload){
+    async registerUser(context, payload){
         console.log(payload)
         const request = await fetch('http://localhost:5000/api/register', {
             method: 'POST',
@@ -48,7 +64,13 @@ export default {
             },
             body: JSON.stringify(payload)
         })
-        const responseData = await request.json()
+        let responseData = 0
+            if(request.status == 200) {
+                responseData = await request.json()
+            } else{
+                context.commit('setError')
+            }
+        //const responseData = await request.json()
         console.log(responseData)
     },
 
@@ -62,11 +84,21 @@ export default {
           },
           body: JSON.stringify(payload)
       })
-      const responseData = await request.json()
+      let responseData = 0
+            if(request.status == 200) {
+                responseData = await request.json()
+            } else{
+                context.commit('setError')
+            }
+      //const responseData = await request.json()
       //console.log(responseData)
       context.commit('setUserData', responseData)
-  }
-      
+    },
+    signOut(context){
+        context.commit('setToken', '')
+        context.commit('setUserData', {})
+        sessionStorage.removeItem('token')
+    }
   },
   modules: {
   }

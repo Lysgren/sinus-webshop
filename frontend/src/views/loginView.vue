@@ -3,26 +3,26 @@
     <div class="login-view-center">
       <Login @clicked="onClick" v-if="status === 'login'" />
       <Register @clicked="onClick" v-else-if="status === 'register'" />
-      <EditProfile @clicked="onClick" v-else-if="status === 'edit'" />
+      <div v-else>
+        <p>här är ditt respons</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import EditProfile from "@/components/login/editProfile.vue";
 import Login from "@/components/login/loginUser.vue";
 import Register from "@/components/login/register.vue";
 
 export default {
   components: {
-    EditProfile,
     Login,
     Register,
   },
   data() {
     return {
       loginStatus: true,
-      status: "register",
+      status: "login",
     };
   },
   methods: {
