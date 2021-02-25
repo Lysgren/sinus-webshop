@@ -33,5 +33,4 @@ export default {
   align-items: center;
   margin: 3em 0;
 }
-
 </style>

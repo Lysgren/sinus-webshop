@@ -13,20 +13,20 @@
         <div class="dot"></div>
         <div class="dot"></div>
       </div>
-      <img src="@/assets/sinus-logo.svg" alt="Sinus logo">
+      <img src="@/assets/sinus-logo.svg" alt="Sinus logo" />
     </div>
     <div class="cards">
-       <img src="@/assets/visa_logo.png" alt="Visa">
-       <img src="@/assets/paypal_logo.png" alt="Paypal">
-       <img src="@/assets/mastercard_logo.png" alt="Mastercard"> 
+      <img src="@/assets/visa_logo.png" alt="Visa" />
+      <img src="@/assets/paypal_logo.png" alt="Paypal" />
+      <img src="@/assets/mastercard_logo.png" alt="Mastercard" />
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-
-}
+  
+};
 </script>
 
 <style scoped>
@@ -36,7 +36,7 @@ export default {
   justify-content: space-around;
   align-items: center;
   height: 15rem;
-  margin-top: 10rem;
+
   background-color: #303030;
   color: white;
   text-align: center;
@@ -51,7 +51,7 @@ export default {
 }
 
 .footer li {
-  margin:0 15px 15px 0;
+  margin: 0 15px 15px 0;
 }
 
 .logo {
@@ -67,7 +67,7 @@ export default {
   height: 50px;
   width: 50px;
   margin: 0 10px 0 10px;
-  background-color: #8382C2;
+  background-color: #8382c2;
   border-radius: 50%;
   display: inline-block;
 }
@@ -77,5 +77,4 @@ export default {
   margin-left: 5px;
   margin-right: 5px;
 }
-
 </style>
