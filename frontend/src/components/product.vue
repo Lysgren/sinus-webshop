@@ -1,39 +1,29 @@
 <template>
-  <div class="product" @click="addToCart">
+  <div class="product">
     <div class="img">
-      <img src="@/assets/wheel-wave.png" alt="" />
+      <img :src="require(`@/assets/${product.imgFile}`)" alt="" />
     </div>
-    <h4 :style="{color:color}">title {{ productInfo }}</h4>
-    <p :style="{color:color}">699kr</p>
+    <button class="add-cart" @click="addToCart()">Add to cart</button>
+    <button class="view-more" @click="viewMore(product._id)">View more</button>
+    <h4 :style="{ color: color }">{{ product.title }}</h4>
+    <p :style="{ color: color }">{{ product.price }} kr</p>
   </div>
 </template>
 
 <script>
-
-
 export default {
   props: {
-    productInfo: Number,
-    color: String
-    // byts mot object från API
+    product: Object,
+    color: String,
   },
 
-  computed:{
-orderList(){
-  return this.$store.state.orders
-}
-
-  },
-
-  methods:{
-    addToCart(){
-
-      this.$store.commit('addToCart')
-
-      // this.$store.state.orders.shoppingCart.push({typ:'tröja'})
+  methods: {
+    addToCart() {
+      this.$store.commit("addToCart", this.product)
     },
-
-
+    viewMore(id) {
+      this.$router.push(`productPage/${id}`)
+    },
   },
 };
 </script>
@@ -54,6 +44,9 @@ orderList(){
     grid-row: 1/5;
     justify-self: stretch;
     align-self: stretch;
+    display: flex;
+    align-content: center;
+    justify-content: center;
     img {
       object-fit: contain;
       max-height: 100%;
@@ -76,6 +69,15 @@ orderList(){
     grid-row: 5 / end;
     justify-self: flex-end;
     align-self: flex-end;
+  }
+  .add-cart {
+    grid-column: 1/2;
+    grid-row: 2 / 4;
+  }
+  .view-more {
+    grid-column: 1/2;
+    grid-row: 5 / end;
+    justify-self: flex-end;
   }
 }
 </style>

@@ -32,7 +32,6 @@ export default {
     props: {
         product: Object
     }
-
 }
 </script>
 

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <nav></nav>
     <Navbar />
     <router-view />
     <Footer />
@@ -22,7 +21,6 @@ export default {
   padding: 0;
   // box-sizing: border-box;
 }
-
 #app {
   width: 100%;
 }
