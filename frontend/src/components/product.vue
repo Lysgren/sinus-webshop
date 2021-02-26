@@ -22,10 +22,17 @@ export default {
       this.$store.commit("addToCart", this.product)
     },
     viewMore(id) {
-      this.$router.push(`productPage/${id}`)
-    },
+      this.$store.commit("setRelevantProduct")
+      if (this.$route.params.id != undefined) {
+        this.$route.params.id = ""
+        this.$store.dispatch('fetchSingleProduct', id)
+        this.$router.push(`${id}`)
+      } else  {
+        this.$router.push(`productPage/${id}`)
+      }
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

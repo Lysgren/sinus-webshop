@@ -3,9 +3,9 @@
     <h3>OTHERS ALSO LIKED...</h3>
     <div class="product-list">
       <Product
-        v-for="product of recommendedProducts"
+        v-for="(product, index) of recommendedProducts"
         :key="product._id"
-        :product="product"
+        :product="recommendedProducts[index]"
         :color="'white'"
         class="product"
       />
@@ -22,14 +22,13 @@ export default {
       return this.$store.getters.getRelevantProducts
     }
   },
-
   mounted() {
     if (this.$store.getters.getProducts == false) {
       this.$store.dispatch('fetchProducts')
     }
   },
 
-  components: { Product },
+  components: { Product }
 
 }
 </script>
@@ -43,6 +42,7 @@ export default {
   h3 {
     color: white;
     word-spacing: 9999rem;
+    padding: 0.8rem;
   }
   h3 ~ h3 {
     /* Undo last assignment */
@@ -50,6 +50,7 @@ export default {
     display: table-caption;
   }
   .product-list {
+    min-width: 70%;
     .product {
       border: 0.04rem solid white;
     }
