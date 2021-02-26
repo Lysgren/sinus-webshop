@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="hanna">
     
     <cartItem v-for="item in items" :key="item._id" :item="item" />
     
