@@ -1,3 +1,5 @@
+
+
 export default {
   state: {
     shoppingCart: [],
@@ -74,6 +76,22 @@ export default {
       const response = await request.json()
       return response
     },
+
+    async getOrders(){
+    
+      const token = sessionStorage.getItem('token')
+      
+      const request = await fetch('http://localhost:5000/api/orders', {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      })
+      const responseData = await request.json()
+      console.log(responseData)
+  },
+
+
+
   },
   modules: {},
 }

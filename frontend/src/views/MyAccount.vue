@@ -6,6 +6,9 @@
         <div class="account-wrapper">
             <div class="prev-orders">
                 <h3>Tidigare ordrar:</h3>
+                <button v-on:click='getTheUser'>click</button>
+                
+                <p>{{user}}</p>
             </div>
             <div class="account-info">
                 <h3>Dina uppgifter:</h3>
@@ -29,6 +32,18 @@ export default {
 computed: {
     user(){
         return this.$store.getters.getUserData
+    }
+},
+
+// created() {
+//     this.$store.dispatch('getUser')
+// },
+
+methods: {
+    getTheUser(){
+        //console.log(this.$store.state.userToken)
+        //const token = this.$store.state.userToken
+        this.$store.dispatch('getOrders')
     }
 }
 
