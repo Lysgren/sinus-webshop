@@ -4,6 +4,7 @@
     <button @click="logOut" v-if="loggedIn">Log out</button>
     <button @click="logIn" v-else>Log in</button>
     <button @click="edit">Edit</button>
+    <button @click="account">My Account</button>
     <img
       class="cart-img"
       @click="openCart"
@@ -45,6 +46,9 @@ export default {
     },
     edit() {
       this.$router.push("/edit")
+    },
+    account(){
+      this.$router.push('/myaccount')
     }
   },
   computed: {

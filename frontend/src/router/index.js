@@ -5,7 +5,7 @@ import ProductPage from '../views/productPage.vue'
 import Checkout from '../views/checkoutView.vue'
 import Login from '../views/loginView.vue'
 import Edit from '../views/editProfile.vue'
-
+import MyAccount from '../views/MyAccount.vue'
 
 Vue.use(VueRouter)
 
@@ -35,7 +35,11 @@ const routes = [
     name: 'Edit',
     component: Edit
   },
-
+  {
+    path: '/myaccount',
+    name: 'MyAccount',
+    component: MyAccount
+  },
 ]
 
 const router = new VueRouter({
