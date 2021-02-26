@@ -17,7 +17,7 @@ export default {
     this.$store.dispatch('fetchProducts')
   },
 
-  components: { HeroPage, Products}
+  components: { HeroPage, Products }
 }
 </script>
 

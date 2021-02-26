@@ -9,7 +9,7 @@
         <p>{{ item.shortDesc }}</p>
       </div>
     </div>
-
+    
     <div class="item-amount">
       <img class="arrow-up" src="@/assets/arrow_24px.svg" alt="arrow up" @click="changeAmount('inc')"/>
 
