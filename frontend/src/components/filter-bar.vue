@@ -16,28 +16,37 @@
     </div>
     <div class="search-input">
       <img src="@/assets/prodNaviSearch.svg" alt="" />
-      <input type="text" placeholder="search for products..." />
+      <input v-on:input="search" v-model="searchStr" type="text" placeholder="search for products..." />
     </div>
     <img src="@/assets/navSortLogo.svg" alt="" />
   </div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
       All: false,
       options: { Hoodies: false, "T-shirt": false, Wheels: false, Caps: false },
-    };
+      searchStr: ''
+    }
   },
+
+  methods: {
+    search() {
+      this.$store.commit('setSearchesProducts', this.searchStr)
+    }
+  },
+
   watch: {
     All(value) {
       for (let option in this.options) {
         value ? (this.options[option] = true) : (this.options[option] = false);
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,10 +1,11 @@
 export default {
   state: {
     products: false,
-    product: false
+    product: false,
+    searchedProducts: false,
   },
   getters: {
-    getProducts: state => state.products,
+    getProducts: state =>  state.products,
     getSingleProduct: state => state.product,
     getRelevantProducts: state => {
       if (state.products != false) {
@@ -22,11 +23,28 @@ export default {
         return []
       }
 
-    }
+    },
+    getSearchedProducts: state => state.searchedProducts
+
   },
   mutations: {
     setProducts: (state, products) => state.products = products,
-    setSingleProduct: (state, product) => state.product = product
+    setSingleProduct: (state, product) => state.product = product,
+    setSearchesProducts: (state, search) => {
+      if (search != '') {
+        const matches = []
+
+        state.products.forEach(product => {
+          if (product.title.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
+            matches.push(product)
+          }
+        })
+
+        state.searchedProducts = matches
+      } else {
+        state.searchedProducts = state.products
+      }
+    }
   },
   actions: {
     fetchProducts: async ({ commit }) => {
