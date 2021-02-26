@@ -58,26 +58,21 @@ export default {
     },
   },
   actions: {
-    async placeOrder(state) {
-      const cart = state.getters.getCart
-      const products =[]
-      cart.forEach(item => products.push(item._id))
-      
-      console.log(products)
-
+    async placeOrder(state, products) {
       const payload = {
-       
-        items: [products[0]],
+        items: products,
       }
-      const request = await fetch('http://localhost:5000/api/orders', {
+
+      const request = await fetch("http://localhost:5000/api/orders", {
         method: "POST",
         headers: {
           "Content-Type": " application/json",
         },
         body: JSON.stringify(payload),
       })
+
       const response = await request.json()
-      console.log(response)
+      return response
     },
   },
   modules: {},
