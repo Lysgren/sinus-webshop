@@ -2,9 +2,9 @@
   <div class="navbar">
     <img @click="navHome" src="@/assets/sinus-logo.svg" alt="sinus logo" />
     <button @click="logOut" v-if="loggedIn">Log out</button>
-    <button @click="logIn" v-else>Log in</button>
+    <button @click="logIn" v-else>Logga in</button>
     <button @click="edit">Edit</button>
-    <button @click="account">My Account</button>
+    <button @click="account" v-if="loggedIn">My Account</button>
     <img
       class="cart-img"
       @click="openCart"
