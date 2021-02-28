@@ -44,7 +44,13 @@ export default {
           products.push(current._id)
         }
       }
-      this.$store.dispatch("placeOrder", products)
+      if(this.loggedIn == true) {
+        console.log('placeOrderReg')
+        this.$store.dispatch("placeOrderReg", products)
+      } else {
+        console.log('placeOrder')
+        this.$store.dispatch("placeOrder", products)
+      }
     },
   },
 
@@ -52,6 +58,9 @@ export default {
     orderTotal() {
       return this.$store.getters.orderTotal
     },
+    loggedIn() {
+      return !(this.$store.getters.getUserToken.length < 1);
+    }
   },
 }
 </script>

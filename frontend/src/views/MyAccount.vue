@@ -5,10 +5,9 @@
         </p>
         <div class="account-wrapper">
             <div class="prev-orders">
-                <h3>Tidigare ordrar:</h3>
-                <button v-on:click='getTheUser'>click</button>
+                <h3>Tidigare ordrar:</h3>         
+                <p v-for="order in orders" :key="order._id">Order id: {{order._id}}, Order value: {{order.orderValue}}SEK</p>
                 
-                <p>{{user}}</p>
             </div>
             <div class="account-info">
                 <h3>Dina uppgifter:</h3>
@@ -28,25 +27,19 @@
 <script>
 export default {
 
-
 computed: {
     user(){
         return this.$store.getters.getUserData
+    },
+    orders() {
+        return this.$store.getters.getOrders
     }
+    
 },
 
-// created() {
-//     this.$store.dispatch('getUser')
-// },
-
-methods: {
-    getTheUser(){
-        //console.log(this.$store.state.userToken)
-        //const token = this.$store.state.userToken
-        this.$store.dispatch('getOrders')
-    }
+mounted(){
+    this.$store.dispatch('getOrders')
 }
-
 }
 </script>
 

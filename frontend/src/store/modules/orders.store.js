@@ -3,6 +3,7 @@
 export default {
   state: {
     shoppingCart: [],
+    orders: []
   },
 
   getters: {
@@ -12,8 +13,12 @@ export default {
       state.shoppingCart.forEach((item) => (total += item.amount * item.price))
       return total
     },
+    getOrders: (state) => state.orders
   },
   mutations: {
+
+    setOrders: (state, payload) => state.orders = payload,
+
     addToCart(state, item) {
       item = {
         imgFile: item.imgFile,
@@ -77,8 +82,32 @@ export default {
       return response
     },
 
-    async getOrders(){
-    
+
+    async placeOrderReg(state, products) {
+      const payload = {
+        items: products,
+      }
+
+      const token = sessionStorage.getItem('token')
+
+      const request = await fetch("http://localhost:5000/api/orders", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": " application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+      
+      const response = await request.json()
+      console.log(response)
+      return response
+    },
+
+
+
+    async getOrders(context){
+      console.log('getting orders')
       const token = sessionStorage.getItem('token')
       
       const request = await fetch('http://localhost:5000/api/orders', {
@@ -87,6 +116,7 @@ export default {
           }
       })
       const responseData = await request.json()
+      context.commit('setOrders', responseData)
       console.log(responseData)
   },
 

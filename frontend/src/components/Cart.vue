@@ -1,10 +1,5 @@
 <template>
-<<<<<<< HEAD
-  <div class="hanna">
-    
-=======
   <div>
->>>>>>> cartFixX
     <cartItem v-for="item in items" :key="item._id" :item="item" />
   </div>
 </template>
