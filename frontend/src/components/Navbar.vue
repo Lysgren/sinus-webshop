@@ -3,7 +3,7 @@
     <img @click="navHome" src="@/assets/sinus-logo.svg" alt="sinus logo" />
     <button @click="logOut" v-if="loggedIn">Log out</button>
     <button @click="logIn" v-else>Logga in</button>
-    <button @click="edit">Edit</button>
+    <button @click="createProduct" v-if="admin">Create product</button>
     <button @click="account" v-if="loggedIn">My Account</button>
     <img
       class="cart-img"
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       displayCart: false,
-    };
+    }
   },
   components: {
     shoppingCart,
@@ -47,14 +47,20 @@ export default {
     edit() {
       this.$router.push("/edit")
     },
-    account(){
+    account() {
       this.$router.push('/myaccount')
+    },
+    createProduct() {
+      this.$router.push('/createProduct')
     }
   },
   computed: {
     loggedIn() {
       return !(this.$store.getters.getUserToken.length < 1);
     },
+    admin(){
+      return this.$store.getters.getUserData.role == 'admin' ? true : false
+    }
   }
 }
 </script>

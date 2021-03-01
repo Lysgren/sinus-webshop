@@ -6,6 +6,7 @@ import Checkout from '../views/checkoutView.vue'
 import Login from '../views/loginView.vue'
 import Edit from '../views/editProfile.vue'
 import MyAccount from '../views/MyAccount.vue'
+import CreateProduct from '../views/createProduct.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/myaccount',
     name: 'MyAccount',
     component: MyAccount
+  },
+  {
+    path: '/createproduct',
+    name: 'CreateProduct',
+    component: CreateProduct
   },
 ]
 
