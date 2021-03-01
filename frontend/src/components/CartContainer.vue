@@ -16,9 +16,8 @@
       <h4>TOTAL:</h4>
       <p>{{ orderTotal }} SEK</p>
     </span>
-    <button @click="placeOrder">place order</button>
     <div class="continue">
-      <router-link to="/checkout"><button>Continue</button></router-link>
+      <button @click="toCheckout()" >Continue</button>
       <p>Klicka för att komma vidare till checkout</p>
     </div>
   </div>
@@ -33,28 +32,18 @@ export default {
     closeWindow() {
       this.$emit("close")
     },
-
-    placeOrder() {
-      const cart = this.$store.getters.getCart
-
-      let products = []
-
-      for (let current of cart) {
-        for (let i = 0; i < current.amount; i++) {
-          products.push(current._id)
-        }
+    toCheckout() {
+      this.$emit("close")
+      if (this.$route.path != "/checkout" && this.cart.length > 0) {
+        this.$router.push("/checkout")
       }
-      if(this.loggedIn == true) {
-        console.log('placeOrderReg')
-        this.$store.dispatch("placeOrderReg", products)
-      } else {
-        console.log('placeOrder')
-        this.$store.dispatch("placeOrder", products)
-      }
-    },
+    }
   },
 
   computed: {
+    cart() {
+      return this.$store.getters.getCart
+    },
     orderTotal() {
       return this.$store.getters.orderTotal
     },
