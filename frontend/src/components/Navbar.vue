@@ -29,11 +29,7 @@ export default {
 
   methods: {
     openCart() {
-      if (this.displayCart == false) {
-        this.displayCart = true;
-      } else if (this.displayCart == true) {
-        this.displayCart = false;
-      }
+      this.displayCart = !this.displayCart 
     },
     logIn() {
       this.$router.push("/login");

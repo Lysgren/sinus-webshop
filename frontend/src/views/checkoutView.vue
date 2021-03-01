@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Cart from "@/components/checkout/cart.vue";
+import Cart from "@/components/checkout/cartCheckOut.vue";
 import Checkout from "@/components/checkout/checkout.vue";
 import Response from "@/components/checkout/response.vue";
 

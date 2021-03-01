@@ -1,42 +1,39 @@
 <template>
   <div class="checkout">
-    <div class="billing-address">
+    <div class="billing-address" v-if="loggedIn">
       <h4>Billing Address</h4>
       <div class="billing-address-inputs address-inputs">
         <label for="name">NAME:</label>
         <input type="text" name="name" />
-        <label for="Address1">ADDRESS LINE1:</label>
+        <label for="Address1">ADDRESS:</label>
         <input type="text" name="Address1" />
-        <label for="Address2">ADDRESS LINE2:</label>
-        <input type="text" name="Address2" />
-
-        <select name="Country" id="">
-          <option value="" default>Country</option>
-          <option value="" v-for="(item, index) in countries" :key="index">
-            {{ item }}
-          </option>
-        </select>
-        <select name="Country" id="">
-          <option value="" default>City</option>
-          <option value="" v-for="(item, index) in cities" :key="index">
-            {{ item }}
-          </option>
-        </select>
+        <label for="zip">ZIP</label>
+        <input type="text" name="zip" />
+        <label for="city">CITY:</label>
+        <input type="text" name="city" />
         <label for="Mail">EMAIL:</label>
         <input type="text" name="Mail" />
       </div>
     </div>
+    <div class="billing-address address-inputs" v-else>
+              <label for="name">NAME:</label>
+      <input type="text" :value="getUser.name">
+           <label for="Mail">EMAIL:</label>
+            <input type="text" :value="getUser.email">
+                  <label for="Address1">ADDRESS:</label>
+            <input type="text " v-for="(item, index) in getUser.address" :key="index" :value="item">
+    </div>
     <div class="payment-methods">
       <div class="payment-methods-inputs address-inputs">
         <h4>Payment Methods</h4>
-        <div class="payment-alternative">
+        <!-- <div class="payment-alternative" >
           <input name="paypal" type="checkbox" />
           <label for="creditcard">Paypal</label>
-        </div>
-        <div class="payment-alternative">
+        </div> -->
+        <!-- <div class="payment-alternative">
           <input name="creditcard" type="checkbox" />
           <label for="creditcard">Credcard</label>
-        </div>
+        </div> -->
         <div class="card-alternative">
           <div class="card-inputs">
             <input name="Visa" type="checkbox" />
@@ -44,29 +41,70 @@
             <input name="Mastercard" type="checkbox" />
             <label for="Mastercard">Mastercard</label>
           </div>
-          <label for="name">NAME:</label>
-          <input type="text" name="name" />
-          <label for="name">CARD NR:</label>
-          <input type="text" name="name" />
+          <label for="Cardname">NAME:</label>
+          <input v-model="paymentInfo.cardHolder" type="text" name="Cardname" />
+          <label for="CardNr">CARD NR:</label>
+          <input v-model="paymentInfo.cardNumber" type="text" name="CardNr" />
+          <label for="CVV">CVV:</label>
+          <input v-model="paymentInfo.cardCVV" type="text" name="CVV" />
         </div>
       </div>
-      <button @click="checkout()">CONTINUE TO CHECKOUT</button>
+      <button @click="placeOrder()">PLACE ORDER</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      loggedIn: false,
+      paymentInfo:{
+        cardType: '',
+        cardNumber: '',
+        cardHolder: '',
+        cardCVV: '',
+
+      }
+    };
+  },
   methods: {
-    checkout() {
+    placeOrder() {
+      const cart = this.$store.getters.getCart;
+
+      let products = [];
+
+      for (let current of cart) {
+        for (let i = 0; i < current.amount; i++) {
+          products.push(current._id);
+        }
+      }
+      if (this.loggedIn == true) {
+        this.$store.dispatch("placeOrderReg", products);
+      } else {
+        this.$store.dispatch("placeOrder", products);
+      }
+      sessionStorage.setItem('cardInfo', JSON.stringify(this.paymentInfo))
       this.$emit("clicked", "response");
     },
   },
-  data() {
-    return {
-      countries: ["Norge", "Tyskland", "Japan"],
-      cities: ["Borås", "Flen", "Stockholm", "Tokyo"],
-    };
+  computed: {
+    getToken() {
+      return this.$store.getters.getUserToken;
+    },
+    getUser() {
+      return this.$store.getters.getUserData;
+    },
+  },
+  created() {
+    if (sessionStorage.getItem("token")) {
+      this.loggedIn = false;
+    } else {
+      this.loggedIn = true;
+    }
+    if (sessionStorage.getItem('cardInfo')) {
+      this.paymentInfo = sessionStorage.getItem('cardInfo')
+    }
   },
 };
 </script>
