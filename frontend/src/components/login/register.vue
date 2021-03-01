@@ -1,5 +1,6 @@
 <template>
   <div class="login-user">
+    <h1>Register account</h1>
     <form @submit.prevent="registerUser" class="login-user-inputs">
       <label for="mail">Email</label>
       <input name="mail" v-model="newUser.email" type="email" placeholder="email" />
@@ -15,20 +16,20 @@
       <input name="city" v-model="newUser.address.city" type="text" placeholder="city" />
       <button>Registrera</button>
     </form>
-  </div>   
+  </div>
 </template>
 <script>
 export default {
   data() {
     return {
       newUser: {
-        email: "",
-        password: "",
-        name: "",
+        email: '',
+        password: '',
+        name: '',
         address: {
-          street: "",
-          zip: "",
-          city: "",
+          street: '',
+          zip: '',
+          city: '',
         },
       },
     };

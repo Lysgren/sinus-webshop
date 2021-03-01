@@ -6,8 +6,11 @@
         <div class="account-wrapper">
             <div class="prev-orders">
                 <h3>Tidigare ordrar:</h3>         
-                <p v-for="order in orders" :key="order._id">Order id: {{order._id}}, Order value: {{order.orderValue}}SEK</p>
-                
+                <OrderHistory
+                    v-for="order in orders" 
+                    :key="order._id"
+                    :order="order"
+                    />
             </div>
             <div class="account-info">
                 <h3>Dina uppgifter:</h3>
@@ -20,26 +23,26 @@
             </div>
         </div>    
     </div>
-    
-    
 </template>
 
 <script>
+
+import OrderHistory from '@/components/myAccount/orderHistory.vue'
+
 export default {
 
-computed: {
-    user(){
-        return this.$store.getters.getUserData
+    computed: {
+        user(){
+            return this.$store.getters.getUserData
+        },
+        orders() {
+            return this.$store.getters.getOrders
+        } 
     },
-    orders() {
-        return this.$store.getters.getOrders
-    }
-    
-},
-
-mounted(){
-    this.$store.dispatch('getOrders')
-}
+    mounted(){
+        this.$store.dispatch('getOrders')
+    },
+    components: { OrderHistory }
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template>
   <div class="login-user">
+    <h1>Login to account</h1>
     <form
       @submit.prevent="submit"
       class="login-user-inputs"

@@ -55,13 +55,8 @@ export default {
     loggedIn() {
       return !(this.$store.getters.getUserToken.length < 1);
     },
-  },
-  watch: {
-    loggedIn(value) {
-      console.log(value);
-    },
-  },
-};
+  }
+}
 </script>
 
 <style scoped>

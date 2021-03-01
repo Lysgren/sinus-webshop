@@ -1,8 +1,4 @@
-
-
 export default {
-
-
   state: {
     userData: {},
     userToken: '',
@@ -18,45 +14,40 @@ export default {
     }
   },
   getters: {
-      getError:(state) => state.error,
-      getUserToken:(state) => state.userToken,
-      getUserData:(state) => state.userData
+    getError:(state) => state.error,
+    getUserToken:(state) => state.userToken,
+    getUserData:(state) => state.userData
   },
   actions: {
     async signIn(context, payload){
-            const request = await fetch('http://localhost:5000/api/auth', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload) 
-            })
-           //await console.log(request.status)
-            let responseData = 0
-            if(request.status == 200) {
-                responseData = await request.json()
-            } else{
-                context.commit('setError')
-            }
-            
+        const request = await fetch('http://localhost:5000/api/auth', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload) 
+        })
+
+        if (request.status == 200) {
+            let responseData = await request.json()
             context.commit('setToken', responseData.token)
             context.commit('setUserData', responseData.user)
             sessionStorage.setItem('token', responseData.token)
-        },
-    async getUser(context){
-          //console.log(context.userToken)
-          const request = await fetch('http://localhost:5000/api/me', {
-              headers: {
-                  Authorization: `Bearer ${context.state.userToken}`
-              }
-          })
-          const responseData = await request.json()
-          context.commit('setUserData', responseData)
-          console.log(responseData)
-      },
+        } else {
+            context.commit('setError')
+        }
+    },
+    async getUser(context) {
+        const request = await fetch('http://localhost:5000/api/me', {
+            headers: {
+                Authorization: `Bearer ${context.state.userToken}`
+            }
+        })
+        const responseData = await request.json()
+        context.commit('setUserData', responseData)
+    },
       
-    async registerUser(context, payload){
-        console.log(payload)
+    async registerUser(context, payload) {
         const request = await fetch('http://localhost:5000/api/register', {
             method: 'POST',
             headers: {
@@ -64,18 +55,10 @@ export default {
             },
             body: JSON.stringify(payload)
         })
-        let responseData = 0
-            if(request.status == 200) {
-                responseData = await request.json()
-            } else{
-                context.commit('setError')
-            }
-        //const responseData = await request.json()
-        console.log(responseData)
+        request.status == 200 ? context.dispatch('signIn', { email: payload.email, password: payload.password }) : context.commit('setError')
     },
 
-    async updateUser(context, payload){
-      console.log(payload)
+    async updateUser(context, payload) {
       const request = await fetch('http://localhost:5000/api/me', {
           method: 'PATCH',
           headers: {
@@ -85,13 +68,11 @@ export default {
           body: JSON.stringify(payload)
       })
       let responseData = 0
-            if(request.status == 200) {
-                responseData = await request.json()
-            } else{
-                context.commit('setError')
-            }
-      //const responseData = await request.json()
-      //console.log(responseData)
+        if(request.status == 200) {
+            responseData = await request.json()
+        } else{
+            context.commit('setError')
+        }
       context.commit('setUserData', responseData)
     },
     signOut(context){
@@ -99,7 +80,5 @@ export default {
         context.commit('setUserData', {})
         sessionStorage.removeItem('token')
     }
-  },
-  modules: {
   }
 }
