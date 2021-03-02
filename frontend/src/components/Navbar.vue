@@ -5,12 +5,17 @@
     <button @click="logIn" v-else>Logga in</button>
     <button @click="createProduct" v-if="admin">Create product</button>
     <button @click="account" v-if="loggedIn">My Account</button>
+    <div class="cart-icon-wrapper" v-if="currentRoute != '/checkout'">
     <img
       class="cart-img"
       @click="openCart"
       src="@/assets/icon-bag-white.svg"
       alt="shoppingcart"
     />
+    <div class="number-display" v-if="cartItemsAmount >0">
+    <p>{{cartItemsAmount}}</p>
+    </div>
+    </div>
     <shoppingCart v-if="displayCart" @close="openCart" />
   </div>
 </template>
@@ -29,6 +34,7 @@ export default {
 
   methods: {
     openCart() {
+
       this.displayCart = !this.displayCart;
     },
     logIn() {
@@ -69,6 +75,16 @@ export default {
     },
     admin() {
       return this.$store.getters.getUserData.role == 'admin' ? true : false
+    },
+
+    cartItemsAmount(){
+      
+      return this.$store.getters.getItemsAmount
+    },
+
+    currentRoute(){
+
+      return this.$route.path
     }
   }
 }
@@ -86,11 +102,19 @@ export default {
   padding: 0.4rem 1rem;
 }
 
-.navbar img {
+.navbar img, .navbar button {
   cursor: pointer;
 }
 .cart-img {
   width: 1rem;
   cursor: pointer;
+}
+
+.number-display{
+  background-color: khaki;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
