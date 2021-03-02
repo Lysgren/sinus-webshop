@@ -74,19 +74,3 @@ export default {
   font-weight: 600;
   color: red;
 }
-
-.create-wrapper{
-  margin-right: 20%;
-  margin-left: 20%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 3em 0;
-}
-.create-wrapper-form{
-  display: flex;
-  flex-direction: column;
-}
-
-</style>

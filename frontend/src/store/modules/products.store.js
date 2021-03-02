@@ -29,6 +29,24 @@ export default {
         state.searchedProducts = state.products
       }
     },
+    sortByPrice: (state, str) => {
+      state.searchedProducts = (str == 'low' ? state.products.sort((productOne, productTwo) => productOne.price - productTwo.price) : state.products.sort((productOne, productTwo) => productTwo.price - productOne.price))
+    },
+    sortByName: (state, str) => {
+      if (str == 'startA') {
+        state.searchedProducts = state.products.sort((first, second) => {
+          const firstFixed = first.title.toUpperCase()
+          const secondFixed = second.title.toUpperCase()
+          return (firstFixed < secondFixed) ? -1 : (firstFixed > secondFixed) ? 1 : 0
+        })
+      } else {
+        state.searchedProducts = state.products.sort((first, second) => {
+          const firstFixed = first.title.toUpperCase()
+          const secondFixed = second.title.toUpperCase()
+          return (firstFixed > secondFixed) ? -1 : (firstFixed < secondFixed) ? 1 : 0
+        })
+      }
+    },
     setRelevantProduct: (state) => {
       const arr = []
       const randomProducts = []
