@@ -1,23 +1,25 @@
-
-
 export default {
   state: {
     shoppingCart: [],
-    orders: []
+    orders: [],
   },
 
   getters: {
     getCart: (state) => state.shoppingCart,
-    orderTotal: (state) => {
+    getItemsAmount(state) {
+      let totalAmount = 0
+      state.shoppingCart.forEach((item) => (totalAmount += item.amount))
+      return totalAmount
+    },
+    orderTotal (state) {
       let total = 0
       state.shoppingCart.forEach((item) => (total += item.amount * item.price))
       return total
     },
-    getOrders: (state) => state.orders
+    getOrders: (state) => state.orders,
   },
   mutations: {
-
-    setOrders: (state, payload) => state.orders = payload,
+    setOrders: (state, payload) => (state.orders = payload),
 
     addToCart(state, item) {
       item = {
@@ -63,6 +65,8 @@ export default {
         this.commit("removeFromCart", item)
       }
     },
+
+    emptyCart: (state) => state.shoppingCart = []
   },
   actions: {
     async placeOrder(state, products) {
@@ -82,13 +86,12 @@ export default {
       return response
     },
 
-
     async placeOrderReg(state, products) {
       const payload = {
         items: products,
       }
 
-      const token = sessionStorage.getItem('token')
+      const token = sessionStorage.getItem("token")
 
       const request = await fetch("http://localhost:5000/api/orders", {
         method: "POST",
@@ -98,27 +101,22 @@ export default {
         },
         body: JSON.stringify(payload),
       })
-      
+
       const response = await request.json()
       return response
     },
 
+    async getOrders(context) {
+      const token = sessionStorage.getItem("token")
 
-
-    async getOrders(context){
-      const token = sessionStorage.getItem('token')
-      
-      const request = await fetch('http://localhost:5000/api/orders', {
-          headers: {
-              Authorization: `Bearer ${token}`
-          }
+      const request = await fetch("http://localhost:5000/api/orders", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       const responseData = await request.json()
-      context.commit('setOrders', responseData)
-  },
-
-
-
+      context.commit("setOrders", responseData)
+    },
   },
   modules: {},
 }

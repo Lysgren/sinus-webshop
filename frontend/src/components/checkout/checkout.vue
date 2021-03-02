@@ -75,7 +75,7 @@ export default {
       } else {
         this.$store.dispatch("placeOrder", products)
       }
-
+      this.$store.commit("emptyCart")
       this.$emit("clicked", "response")
     },
   },
