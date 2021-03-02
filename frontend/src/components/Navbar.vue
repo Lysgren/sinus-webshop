@@ -1,97 +1,112 @@
 <template>
   <div class="navbar">
-    <img class="logo" @click="navHome" src="@/assets/sinus-logo.svg" alt="sinus logo" />
+    <img
+      class="logo"
+      @click="navHome"
+      src="@/assets/sinus-logo.svg"
+      alt="sinus logo"
+    />
     <button @click="logOut" v-if="loggedIn">Log out</button>
     <button @click="logIn" v-else>Logga in</button>
     <button @click="createProduct" v-if="admin">Create product</button>
     <button @click="account" v-if="loggedIn">My Account</button>
     <div class="cart-icon-wrapper" v-if="currentRoute != '/checkout'">
-    <img
-      class="cart-img"
-      :style= "{cursor: cursor}"
-      @click="openCart"
-      src="@/assets/icon-bag-white.svg"
-      alt="shoppingcart"
-    />
-    <div class="number-display" v-if="cartItemsAmount >0">
-    <p>{{cartItemsAmount}}</p>
+      <img
+        class="cart-img"
+        :style="{ cursor: cursor }"
+        @click="toggleCart"
+        src="@/assets/icon-bag-white.svg"
+        alt="shoppingcart"
+      />
+      <div class="number-display" v-if="cartItemsAmount > 0">
+        <p>{{ cartItemsAmount }}</p>
+      </div>
     </div>
-    </div>
-    <shoppingCart v-if="displayCart" @close="openCart" />
+    <shoppingCart v-if="displayCart" @close="toggleCart" />
   </div>
 </template>
 
 <script>
-import shoppingCart from "@/components/CartContainer.vue";
+import shoppingCart from "@/components/CartContainer.vue"
 export default {
   data() {
     return {
       displayCart: false,
-      cursor: 'auto'
-    };
+      cursor: "auto",
+    }
   },
   components: {
     shoppingCart,
   },
 
   methods: {
-    openCart() {
-      if(this.cartItemsAmount > 0){
-        this.cursor = 'pointer'
-        this.displayCart = !this.displayCart;
+    toggleCart() {
+      if (this.cartItemsAmount < 1) {
+        this.displayCart = false
+      }
+
+      if (this.cartItemsAmount > 0) {
+        this.displayCart = !this.displayCart
       }
     },
     logIn() {
       if (this.$route.path != "/login") {
-        this.$router.push("/login");
+        this.$router.push("/login")
       }
     },
     logOut() {
-      this.$store.dispatch("signOut");
+      this.$store.dispatch("signOut")
       if (this.$route.path != "/") {
-        this.$router.push("/");
+        this.$router.push("/")
       }
     },
     navHome() {
       if (this.$route.path != "/") {
-        this.$router.push("/");
+        this.$router.push("/")
       }
     },
     edit() {
       if (this.$route.path != "/edit") {
-        this.$router.push("/edit");
+        this.$router.push("/edit")
       }
     },
     account() {
       if (this.$route.path != "/myaccount") {
-        this.$router.push("/myaccount");
+        this.$router.push("/myaccount")
       }
     },
     createProduct() {
       if (this.$route.path != "/createProduct") {
-        this.$router.push("/createProduct");
+        this.$router.push("/createProduct")
       }
     },
   },
   computed: {
-
     loggedIn() {
-      return this.$store.getters.getUserToken;
+      return this.$store.getters.getUserToken
     },
     admin() {
-      return this.$store.getters.getUserData.role == 'admin' ? true : false
+      return this.$store.getters.getUserData.role == "admin" ? true : false
     },
 
-    cartItemsAmount(){
-      
+    cartItemsAmount() {
       return this.$store.getters.getItemsAmount
     },
 
-    currentRoute(){
-
+    currentRoute() {
       return this.$route.path
-    }
-  }
+    },
+  },
+
+  watch: {
+    cartItemsAmount(value) {
+      if (value < 1) {
+        this.cursor = "auto"
+      } else {
+        this.cursor = "pointer"
+      }
+    },
+  },
 }
 </script>
 
@@ -107,23 +122,23 @@ export default {
   padding: 0.4rem 1rem;
 }
 
-.navbar .logo, .navbar button {
+.navbar .logo,
+.navbar button {
   cursor: pointer;
 }
 .cart-img {
   width: 1rem;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }
 
-.number-display{
+.number-display {
   background-color: khaki;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 </style>

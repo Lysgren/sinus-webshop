@@ -17,7 +17,7 @@
       <p>{{ orderTotal }} SEK</p>
     </span>
     <div class="continue">
-      <button @click="toCheckout()" >Continue</button>
+      <button @click="toCheckout()">Continue</button>
       <p>Klicka för att komma vidare till checkout</p>
     </div>
   </div>
@@ -37,7 +37,7 @@ export default {
       if (this.$route.path != "/checkout" && this.cart.length > 0) {
         this.$router.push("/checkout")
       }
-    }
+    },
   },
 
   computed: {
@@ -49,7 +49,15 @@ export default {
     },
     loggedIn() {
       return this.$store.getters.getUserToken
-    }
+    },
+  },
+
+  watch: {
+    cart(value) {
+      if (value.length < 1) {
+        this.$emit("close")
+      }
+    },
   },
 }
 </script>
