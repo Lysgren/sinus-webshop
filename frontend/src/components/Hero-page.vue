@@ -6,14 +6,26 @@
     <div class="info-text">
       <h1>HOODIES</h1>
       <p>499SEK</p>
-      <button>BUY NOW</button>
+      <button @click="viewMore">BUY NOW</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  methods: {
+    viewMore() {
+      const id = 'DHV4Y1yTuipzetQ4'
+      this.$store.commit("setRelevantProduct");
+      if (this.$route.params.id != undefined) {
+        this.$route.params.id = "";
+        this.$store.dispatch("fetchSingleProduct", id);
+        this.$router.push(`${id}`);
+      } else {
+        this.$router.push(`productPage/${id}`);
+      }
+    }
+  }
 }
 </script>
 
