@@ -32,15 +32,6 @@ export default {
       this.displayCart = !this.displayCart;
     },
     logIn() {
-<<<<<<< HEAD
-      this.$router.push("/login")
-    },
-    logOut() {
-      this.$store.dispatch("signOut")
-    },
-    navHome() {
-      this.$router.push("/")
-=======
       if (this.$route.path != "/login") {
         this.$router.push("/login");
       }
@@ -55,7 +46,6 @@ export default {
       if (this.$route.path != "/") {
         this.$router.push("/");
       }
->>>>>>> bugFix
     },
     edit() {
       if (this.$route.path != "/edit") {
@@ -78,17 +68,10 @@ export default {
       return this.$store.getters.getUserToken;
     },
     admin() {
-<<<<<<< HEAD
       return this.$store.getters.getUserData.role == 'admin' ? true : false
     }
   }
 }
-=======
-      return this.$store.getters.getUserData.role == "admin" ? true : false;
-    },
-  },
-};
->>>>>>> bugFix
 </script>
 
 <style scoped>
