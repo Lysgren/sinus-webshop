@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <img @click="navHome" src="@/assets/sinus-logo.svg" alt="sinus logo" />
+    <img class="logo" @click="navHome" src="@/assets/sinus-logo.svg" alt="sinus logo" />
     <button @click="logOut" v-if="loggedIn">Log out</button>
     <button @click="logIn" v-else>Logga in</button>
     <button @click="createProduct" v-if="admin">Create product</button>
@@ -8,6 +8,7 @@
     <div class="cart-icon-wrapper" v-if="currentRoute != '/checkout'">
     <img
       class="cart-img"
+      :style= "{cursor: cursor}"
       @click="openCart"
       src="@/assets/icon-bag-white.svg"
       alt="shoppingcart"
@@ -26,6 +27,7 @@ export default {
   data() {
     return {
       displayCart: false,
+      cursor: 'auto'
     };
   },
   components: {
@@ -34,8 +36,10 @@ export default {
 
   methods: {
     openCart() {
-
-      this.displayCart = !this.displayCart;
+      if(this.cartItemsAmount > 0){
+        this.cursor = 'pointer'
+        this.displayCart = !this.displayCart;
+      }
     },
     logIn() {
       if (this.$route.path != "/login") {
@@ -70,6 +74,7 @@ export default {
     },
   },
   computed: {
+
     loggedIn() {
       return this.$store.getters.getUserToken;
     },
@@ -102,11 +107,14 @@ export default {
   padding: 0.4rem 1rem;
 }
 
-.navbar img, .navbar button {
+.navbar .logo, .navbar button {
   cursor: pointer;
 }
 .cart-img {
   width: 1rem;
+}
+
+.pointer{
   cursor: pointer;
 }
 
@@ -116,5 +124,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 </style>
