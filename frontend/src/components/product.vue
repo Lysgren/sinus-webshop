@@ -3,8 +3,9 @@
     <div class="img">
       <img :src="require(`@/assets/${product.imgFile}`)" alt="" />
     </div>
+    <a href="#" @click="viewMore(product._id)">View More</a>
     <button class="add-cart" @click="addToCart()">Add to cart</button>
-    <button class="view-more" @click="viewMore(product._id)">View more</button>
+
     <h4 :style="{ color: color }">{{ product.title }}</h4>
     <p :style="{ color: color }">{{ product.price }} kr</p>
   </div>
@@ -19,20 +20,20 @@ export default {
 
   methods: {
     addToCart() {
-      this.$store.commit("addToCart", this.product)
+      this.$store.commit("addToCart", this.product);
     },
     viewMore(id) {
-      this.$store.commit("setRelevantProduct")
+      this.$store.commit("setRelevantProduct");
       if (this.$route.params.id != undefined) {
-        this.$route.params.id = ""
-        this.$store.dispatch('fetchSingleProduct', id)
-        this.$router.push(`${id}`)
-      } else  {
-        this.$router.push(`productPage/${id}`)
+        this.$route.params.id = "";
+        this.$store.dispatch("fetchSingleProduct", id);
+        this.$router.push(`${id}`);
+      } else {
+        this.$router.push(`productPage/${id}`);
       }
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -60,6 +61,22 @@ export default {
       max-height: 100%;
       max-width: 100%;
     }
+  }
+  a {
+    grid-column: 1/end;
+    grid-row: 1/5;
+    justify-self: center;
+    align-self: center;
+    z-index: 2;
+    display: none;
+    text-decoration: none;
+    color: black;
+  }
+  .img:hover + a {
+    display: inline;
+  }
+  .img:hover {
+    opacity: 0.27;
   }
   h4 {
     text-align: center;
