@@ -39,6 +39,11 @@ export default {
       return this.$store.getters.getUserData;
     }
   },
+  mounted(){
+    if (!this.$store.getters.getUserToken || !this.$store.getters.getAdmin) {
+      this.$router.push("/")
+    }
+  },
 };
 </script>
 
