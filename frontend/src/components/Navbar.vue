@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       displayCart: false,
-    }
+    };
   },
   components: {
     shoppingCart,
@@ -29,36 +29,49 @@ export default {
 
   methods: {
     openCart() {
-      this.displayCart = !this.displayCart 
+      this.displayCart = !this.displayCart;
     },
     logIn() {
-      this.$router.push("/login");
+      if (this.$route.path != "/login") {
+        this.$router.push("/login");
+      }
     },
     logOut() {
       this.$store.dispatch("signOut");
+      if (this.$route.path != "/") {
+        this.$router.push("/");
+      }
     },
     navHome() {
-      this.$router.push("/");
+      if (this.$route.path != "/") {
+        this.$router.push("/");
+      }
     },
     edit() {
-      this.$router.push("/edit")
+      if (this.$route.path != "/edit") {
+        this.$router.push("/edit");
+      }
     },
     account() {
-      this.$router.push('/myaccount')
+      if (this.$route.path != "/myaccount") {
+        this.$router.push("/myaccount");
+      }
     },
     createProduct() {
-      this.$router.push('/createProduct')
-    }
+      if (this.$route.path != "/createProduct") {
+        this.$router.push("/createProduct");
+      }
+    },
   },
   computed: {
     loggedIn() {
-      return !(this.$store.getters.getUserToken.length < 1);
+      return this.$store.getters.getUserToken;
     },
-    admin(){
-      return this.$store.getters.getUserData.role == 'admin' ? true : false
-    }
-  }
-}
+    admin() {
+      return this.$store.getters.getUserData.role == "admin" ? true : false;
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -71,6 +84,10 @@ export default {
   /* width: 100vw; */
   margin: 0;
   padding: 0.4rem 1rem;
+}
+
+.navbar img {
+  cursor: pointer;
 }
 .cart-img {
   width: 1rem;

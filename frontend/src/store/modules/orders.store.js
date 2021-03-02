@@ -100,14 +100,12 @@ export default {
       })
       
       const response = await request.json()
-      console.log(response)
       return response
     },
 
 
 
     async getOrders(context){
-      console.log('getting orders')
       const token = sessionStorage.getItem('token')
       
       const request = await fetch('http://localhost:5000/api/orders', {
@@ -117,7 +115,6 @@ export default {
       })
       const responseData = await request.json()
       context.commit('setOrders', responseData)
-      console.log(responseData)
   },
 
 
