@@ -1,11 +1,17 @@
 <template>
   <div class="product">
+    <div class="hover-div">
+      <a href="#" @click="viewMore(product._id)">View More</a>
+    </div>
     <div class="img">
       <img :src="require(`@/assets/${product.imgFile}`)" alt="" />
     </div>
-    <a href="#" @click="viewMore(product._id)">View More</a>
-    <button class="add-cart" @click="addToCart()">Add to cart</button>
-
+    <img
+      class="add-cart"
+      @click="addToCart()"
+      src="@/assets/icon-bag-black.svg"
+      alt="shoppingcart"
+    />
     <h4 :style="{ color: color }">{{ product.title }}</h4>
     <p :style="{ color: color }">{{ product.price }} kr</p>
   </div>
@@ -56,6 +62,7 @@ export default {
     display: flex;
     align-content: center;
     justify-content: center;
+    transition: opacity 0.5s ease-in-out;
     img {
       object-fit: contain;
       max-height: 100%;
@@ -63,19 +70,34 @@ export default {
     }
   }
   a {
-    grid-column: 1/end;
-    grid-row: 1/5;
-    justify-self: center;
+    text-align: center;
+    grid-column: 2/5;
+    grid-row: 1/end;
+    justify-self: stretch;
     align-self: center;
+    width: 100%;
     z-index: 2;
     display: none;
+    opacity: 0;
     text-decoration: none;
+    text-align: center;
     color: black;
   }
-  .img:hover + a {
-    display: inline;
+  .hover-div {
+    grid-column: 2/5;
+    grid-row: 1/end;
+    z-index: 2;
   }
-  .img:hover {
+  .hover-div:hover a {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+  }
+  .hover-div:hover + .img {
     opacity: 0.27;
   }
   h4 {
@@ -96,13 +118,14 @@ export default {
     align-self: flex-end;
   }
   .add-cart {
+    object-fit: contain;
     grid-column: 1/2;
     grid-row: 1 / 4;
+    cursor: pointer;
+    transition: backGround 0.5s ease-in-out;
   }
-  .view-more {
-    grid-column: 1/2;
-    grid-row: 5 / end;
-    justify-self: flex-end;
+  .add-cart:hover {
+    background: rgba(128, 128, 128, 0.247);
   }
 }
 </style>

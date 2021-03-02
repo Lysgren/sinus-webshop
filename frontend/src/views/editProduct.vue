@@ -60,7 +60,12 @@ export default {
         }
       }
     }
-  }
+  },
+  mounted(){
+    if (!this.$store.getters.getUserToken || !this.$store.getters.getAdmin) {
+      this.$router.push("/")
+    }
+  },
 }
 </script>
 
