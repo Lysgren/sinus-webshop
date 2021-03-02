@@ -16,24 +16,22 @@
       </div>
     </div>
     <div class="billing-address address-inputs" v-else>
-              <label for="name">NAME:</label>
-      <input type="text" :value="getUser.name">
-           <label for="Mail">EMAIL:</label>
-            <input type="text" :value="getUser.email">
-                  <label for="Address1">ADDRESS:</label>
-            <input type="text " v-for="(item, index) in getUser.address" :key="index" :value="item">
+      <label for="name">NAME:</label>
+      <input type="text" :value="getUser.name" />
+      <label for="Mail">EMAIL:</label>
+      <input type="text" :value="getUser.email" />
+      <label for="Address1">ADDRESS:</label>
+      <input
+        type="text "
+        v-for="(item, index) in getUser.address"
+        :key="index"
+        :value="item"
+      />
     </div>
     <div class="payment-methods">
       <div class="payment-methods-inputs address-inputs">
         <h4>Payment Methods</h4>
-        <!-- <div class="payment-alternative" >
-          <input name="paypal" type="checkbox" />
-          <label for="creditcard">Paypal</label>
-        </div> -->
-        <!-- <div class="payment-alternative">
-          <input name="creditcard" type="checkbox" />
-          <label for="creditcard">Credcard</label>
-        </div> -->
+
         <div class="card-alternative">
           <div class="card-inputs">
             <input name="Visa" type="checkbox" />
@@ -42,11 +40,11 @@
             <label for="Mastercard">Mastercard</label>
           </div>
           <label for="Cardname">NAME:</label>
-          <input v-model="paymentInfo.cardHolder" type="text" name="Cardname" />
+          <input type="text" name="Cardname" />
           <label for="CardNr">CARD NR:</label>
-          <input v-model="paymentInfo.cardNumber" type="text" name="CardNr" />
+          <input type="text" name="CardNr" />
           <label for="CVV">CVV:</label>
-          <input v-model="paymentInfo.cardCVV" type="text" name="CVV" />
+          <input type="text" name="CVV" />
         </div>
       </div>
       <button @click="placeOrder()">PLACE ORDER</button>
@@ -59,54 +57,44 @@ export default {
   data() {
     return {
       loggedIn: false,
-      paymentInfo:{
-        cardType: '',
-        cardNumber: '',
-        cardHolder: '',
-        cardCVV: '',
-
-      }
-    };
+    }
   },
   methods: {
     placeOrder() {
-      const cart = this.$store.getters.getCart;
+      const cart = this.$store.getters.getCart
 
-      let products = [];
+      let products = []
 
       for (let current of cart) {
         for (let i = 0; i < current.amount; i++) {
-          products.push(current._id);
+          products.push(current._id)
         }
       }
       if (this.loggedIn == true) {
-        this.$store.dispatch("placeOrderReg", products);
+        this.$store.dispatch("placeOrderReg", products)
       } else {
-        this.$store.dispatch("placeOrder", products);
+        this.$store.dispatch("placeOrder", products)
       }
-      sessionStorage.setItem('cardInfo', JSON.stringify(this.paymentInfo))
-      this.$emit("clicked", "response");
+
+      this.$emit("clicked", "response")
     },
   },
   computed: {
     getToken() {
-      return this.$store.getters.getUserToken;
+      return this.$store.getters.getUserToken
     },
     getUser() {
-      return this.$store.getters.getUserData;
+      return this.$store.getters.getUserData
     },
   },
   created() {
     if (sessionStorage.getItem("token")) {
-      this.loggedIn = false;
+      this.loggedIn = false
     } else {
-      this.loggedIn = true;
-    }
-    if (sessionStorage.getItem('cardInfo')) {
-      this.paymentInfo = sessionStorage.getItem('cardInfo')
+      this.loggedIn = true
     }
   },
-};
+}
 </script>
 
 <style lang="scss">
