@@ -42,27 +42,26 @@ export default {
           }
         }
       }
-
       state.relevantProducts = randomProducts
     }
   },
   actions: {
     fetchProducts: async ({ commit }) => {
-      const request = await fetch("http://localhost:5000/api/products/", {
-        method: "GET",
+      const request = await fetch('http://localhost:5000/api/products/', {
+        method: 'GET',
       })
       await request
         .json()
-        .then((response) => commit("setProducts", response))
-        .then(() => commit("setRelevantProduct"))
+        .then((response) => commit('setProducts', response))
+        .then(() => commit('setRelevantProduct'))
     },
     fetchSingleProduct: async ({ commit }, id) => {
-      const request = await fetch("http://localhost:5000/api/products/" + id, {
-        method: "GET",
+      const request = await fetch('http://localhost:5000/api/products/' + id, {
+        method: 'GET',
       })
       await request
         .json()
-        .then((response) => commit("setSingleProduct", response))
+        .then((response) => commit('setSingleProduct', response))
     },
   },
 }

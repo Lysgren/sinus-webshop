@@ -27,6 +27,7 @@
       </select>
 
     </form>
+    <p class="message" v-if="message">{{ message }}</p>
     <button v-on:click="send">Create product</button>
 
   </div>
@@ -42,15 +43,24 @@ export default {
         shortDesc: '',
         longDesc: '',
         imgFile: ''
-      }
+      },
+      message: false
     }
   },
 
   methods: {
-    send() {
+    async send() {
       if (this.product.title != '' && this.product.price != 0 && this.product.shortDesc != '' && this.product.longDesc != '' && this.product.imgFile != '') {
-        this.$store.dispatch('createProduct', this.product)
-        this.$router.push('/')
+        const returnedValue = await this.$store.dispatch('createProduct', this.product)
+
+        if (returnedValue == true) {
+          this.message = 'Product created succesfully. Returning to main page in a few seconds...'
+          setTimeout(() => {
+            this.$router.push('/')
+          }, 5000)
+        } else {
+          this.message = 'Something went wrong, kindly consult the machine god for advise...'
+        }
       }
     }
   }
@@ -58,6 +68,12 @@ export default {
 </script>
 
 <style scoped>
+
+.message{
+  font-size: 1.3em;
+  font-weight: 600;
+  color: red;
+}
 
 .create-wrapper{
   margin-right: 20%;

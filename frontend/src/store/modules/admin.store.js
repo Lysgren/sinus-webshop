@@ -1,12 +1,6 @@
 export default {
-  state: {
-  },
-  mutations: {
-  },
-  getters: {
-  },
   actions: {
-    async createProduct(_, product) {
+    createProduct: async ({ dispatch }, product) => {
       const userToken = sessionStorage.getItem('token')
       product.price = parseFloat(product.price)
 
@@ -18,12 +12,30 @@ export default {
         },
         body: JSON.stringify(product)
       })
-      
+
       if (request.status == 200) {
-        console.log('Product created succesfully')
+        dispatch('fetchProducts', null, { root: true })
+        return true
       } else {
-        console.log('Something went wrong...')
-        console.log(request.status)
+        return false
+      }
+    },
+    deleteProduct: async ({ dispatch }, id) => {
+      const userToken = sessionStorage.getItem('token')
+
+      const request = await fetch('http://localhost:5000/api/products/' + id, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userToken}`
+        }
+      })
+
+      if (request.status == 200) {
+        dispatch('fetchProducts', null, { root: true })
+        return true
+      } else {
+        return false
       }
     }
   }

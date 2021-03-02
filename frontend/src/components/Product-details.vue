@@ -2,6 +2,7 @@
   <div class="details-wrapper">
     <div class="back bold">
       <router-link to="/">Back to products</router-link>
+      <button class="admin-delete" v-if="admin" v-on:click="deleteProduct">Delete this product</button>
     </div>
 
     <div class="prod">
@@ -19,6 +20,7 @@
         <p class="bold">{{ product.price }} SEK</p>
         <p class="center desc">{{ product.longDesc }}</p>
         <button class="bold" @click="addToCart()">ADD TO CART</button>
+        <p class="message" v-if="message"> {{ message }} </p>
       </div>
     </div>
   </div>
@@ -26,19 +28,58 @@
 
 <script>
 export default {
+  data() {
+    return {
+      message: false
+    }
+  },
   props: {
     product: Object,
   },
+  computed: {
+    admin() {
+      return this.$store.getters.getUserData.role == 'admin' ? true : false
+    }
+  },
   methods: {
     addToCart() {
-      this.$store.commit("addToCart", this.product);
+      this.$store.commit('addToCart', this.product)
     },
+    async deleteProduct() {
+      const returnedValue = await this.$store.dispatch('deleteProduct', this.product._id)
+
+      if (returnedValue == true) {
+        this.message = 'Product deleted succesfully. Returning to main page in a few seconds...'
+        setTimeout(() => {
+          this.$router.push('/')
+        }, 5000)
+      } else {
+          this.message = 'Something went wrong, kindly consult the machine god for advise...'
+      }
+  
+    }
 
   },
 };
 </script>
 
 <style scoped>
+
+
+.message{
+  font-size: 1.5em;
+  color: red;
+  font-weight: 600;
+}
+
+.admin-delete{
+  background-color: white;
+  border: none;
+  outline: none;
+  color: red;
+}
+
+
 .details-wrapper {
   display: flex;
   flex-direction: column;

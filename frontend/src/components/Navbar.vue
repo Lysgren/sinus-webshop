@@ -32,13 +32,13 @@ export default {
       this.displayCart = !this.displayCart 
     },
     logIn() {
-      this.$router.push("/login");
+      this.$router.push("/login")
     },
     logOut() {
-      this.$store.dispatch("signOut");
+      this.$store.dispatch("signOut")
     },
     navHome() {
-      this.$router.push("/");
+      this.$router.push("/")
     },
     edit() {
       this.$router.push("/edit")
@@ -54,7 +54,7 @@ export default {
     loggedIn() {
       return !(this.$store.getters.getUserToken.length < 1);
     },
-    admin(){
+    admin() {
       return this.$store.getters.getUserData.role == 'admin' ? true : false
     }
   }
