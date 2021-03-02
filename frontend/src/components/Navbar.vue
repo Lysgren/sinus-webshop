@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       displayCart: false,
-    }
+    };
   },
   components: {
     shoppingCart,
@@ -29,9 +29,10 @@ export default {
 
   methods: {
     openCart() {
-      this.displayCart = !this.displayCart 
+      this.displayCart = !this.displayCart;
     },
     logIn() {
+<<<<<<< HEAD
       this.$router.push("/login")
     },
     logOut() {
@@ -39,26 +40,55 @@ export default {
     },
     navHome() {
       this.$router.push("/")
+=======
+      if (this.$route.path != "/login") {
+        this.$router.push("/login");
+      }
+    },
+    logOut() {
+      this.$store.dispatch("signOut");
+      if (this.$route.path != "/") {
+        this.$router.push("/");
+      }
+    },
+    navHome() {
+      if (this.$route.path != "/") {
+        this.$router.push("/");
+      }
+>>>>>>> bugFix
     },
     edit() {
-      this.$router.push("/edit")
+      if (this.$route.path != "/edit") {
+        this.$router.push("/edit");
+      }
     },
     account() {
-      this.$router.push('/myaccount')
+      if (this.$route.path != "/myaccount") {
+        this.$router.push("/myaccount");
+      }
     },
     createProduct() {
-      this.$router.push('/createProduct')
-    }
+      if (this.$route.path != "/createProduct") {
+        this.$router.push("/createProduct");
+      }
+    },
   },
   computed: {
     loggedIn() {
-      return !(this.$store.getters.getUserToken.length < 1);
+      return this.$store.getters.getUserToken;
     },
     admin() {
+<<<<<<< HEAD
       return this.$store.getters.getUserData.role == 'admin' ? true : false
     }
   }
 }
+=======
+      return this.$store.getters.getUserData.role == "admin" ? true : false;
+    },
+  },
+};
+>>>>>>> bugFix
 </script>
 
 <style scoped>
@@ -71,6 +101,10 @@ export default {
   /* width: 100vw; */
   margin: 0;
   padding: 0.4rem 1rem;
+}
+
+.navbar img {
+  cursor: pointer;
 }
 .cart-img {
   width: 1rem;

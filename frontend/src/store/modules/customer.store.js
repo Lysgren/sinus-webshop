@@ -1,7 +1,7 @@
 export default {
   state: {
-    userData: {},
-    userToken: '',
+    userData: JSON.parse(sessionStorage.getItem('userData')) || {},
+    userToken: sessionStorage.getItem('token') || null,
     error: false
   },
 
@@ -33,6 +33,7 @@ export default {
             context.commit('setToken', responseData.token)
             context.commit('setUserData', responseData.user)
             sessionStorage.setItem('token', responseData.token)
+            sessionStorage.setItem('userData', JSON.stringify(responseData.user))
         } else {
             context.commit('setError')
         }
@@ -79,6 +80,7 @@ export default {
         context.commit('setToken', '')
         context.commit('setUserData', {})
         sessionStorage.removeItem('token')
+        sessionStorage.removeItem('userData')
     }
   }
 }

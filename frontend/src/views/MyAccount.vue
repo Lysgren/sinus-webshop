@@ -41,6 +41,9 @@ export default {
     },
     mounted(){
         this.$store.dispatch('getOrders')
+        if (!this.$store.getters.getUserToken) {
+            this.$router.push("/")
+        }
     },
     components: { OrderHistory }
 }

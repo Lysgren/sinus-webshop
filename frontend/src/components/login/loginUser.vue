@@ -41,7 +41,7 @@ export default {
       return this.$store.getters.getError;
     },
     loggedIn() {
-      return !(this.$store.getters.getUserToken.length < 1);
+      return this.$store.getters.getUserToken
     },
   },
   watch: {

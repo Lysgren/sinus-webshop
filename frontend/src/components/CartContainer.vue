@@ -48,7 +48,7 @@ export default {
       return this.$store.getters.orderTotal
     },
     loggedIn() {
-      return !(this.$store.getters.getUserToken.length < 1);
+      return this.$store.getters.getUserToken
     }
   },
 }
