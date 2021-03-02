@@ -1,7 +1,7 @@
 <template>
-  <div class="create-wrapper">
-    <h1>Create a new product</h1>
-    <form v-on:submit.prevent="send" class="create-wrapper-form">
+  <div class="update-wrapper">
+    <h1>Edit product</h1>
+    <form v-on:submit.prevent="send" class="update-wrapper-form">
       <label>Title for product</label>
       <input v-model="product.title" type="text" placeholder="Title" required>
 
@@ -16,7 +16,7 @@
 
       <label>Local path to image file</label>
       <select v-model="product.imgFile" required>
-        <option value="skateboard-greta.png" selected>Gretas Fury Skateboard</option>
+        <option value="skateboard-greta.png">Gretas Fury Skateboard</option>
         <option value="skateboard-generic.png">Skateboard generic</option>
         <option value="hoodie-fire.png">Hoodie Fire</option>
         <option value="hoodie-ash.png">Hoodie Ash</option>
@@ -28,7 +28,7 @@
 
     </form>
     <p class="message" v-if="message">{{ message }}</p>
-    <button v-on:click="send">Create product</button>
+    <button v-on:click="send">Edit product</button>
 
   </div>
 </template>
@@ -37,24 +37,21 @@
 export default {
   data() { 
     return {
-      product: {
-        title: '',
-        price: 0,
-        shortDesc: '',
-        longDesc: '',
-        imgFile: ''
-      },
       message: false
     }
   },
-
+  computed: {
+    product() {
+      return this.$store.getters.getSingleProduct
+    }
+  },
   methods: {
     async send() {
       if (this.product.title != '' && this.product.price != 0 && this.product.shortDesc != '' && this.product.longDesc != '' && this.product.imgFile != '') {
-        const returnedValue = await this.$store.dispatch('createProduct', this.product)
+        const returnedValue = await this.$store.dispatch('editProduct', this.product)
 
         if (returnedValue == true) {
-          this.message = 'Product created succesfully. Returning to main page in a few seconds...'
+          this.message = 'Product edited succesfully. Returning to main page in a few seconds...'
           setTimeout(() => {
             this.$router.push('/')
           }, 3000)
@@ -75,7 +72,7 @@ export default {
   color: red;
 }
 
-.create-wrapper{
+.update-wrapper{
   margin-right: 20%;
   margin-left: 20%;
   display: flex;
@@ -84,7 +81,7 @@ export default {
   align-items: center;
   padding: 3em 0;
 }
-.create-wrapper-form{
+.update-wrapper-form{
   display: flex;
   flex-direction: column;
 }

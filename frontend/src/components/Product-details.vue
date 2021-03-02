@@ -3,6 +3,7 @@
     <div class="back bold">
       <router-link to="/">Back to products</router-link>
       <button class="admin-delete" v-if="admin" v-on:click="deleteProduct">Delete this product</button>
+      <router-link v-if="admin" :to="'/productPage/' + product._id +'/edit'">Edit product</router-link>
     </div>
 
     <div class="prod">
@@ -14,7 +15,7 @@
         />
       </div>
       <div class="details">
-        <h2>{{ product.item }}</h2>
+        <h2>{{ product.title }}</h2>
         <p class="bold">ART.NR: {{ product._id }}</p>
         <p>{{ product.color }}</p>
         <p class="bold">{{ product.price }} SEK</p>
@@ -52,15 +53,13 @@ export default {
         this.message = 'Product deleted succesfully. Returning to main page in a few seconds...'
         setTimeout(() => {
           this.$router.push('/')
-        }, 5000)
+        }, 3000)
       } else {
           this.message = 'Something went wrong, kindly consult the machine god for advise...'
       }
-  
     }
-
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
