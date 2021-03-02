@@ -1,19 +1,13 @@
 <template>
   <div class="cart">
     <div class="cart-items">
-      <h4>Cart ({{items.length}})</h4>
+      <h4>Cart ({{items}})</h4>
 
       <shoppingCart/>
-    <!-- <cartItem v-for="item in items" :key="item._id" :item="item" />
-
-    <ul>
-    <li v-for="item in items" :key="item._id" >{{item}}</li>
-
-    </ul> -->
+    
     </div>
     <div class="cart-order">
       <div class="cart-order-sum">
-        <div></div>
         <p>
           Prices and delivery costs are not confirmed until you've reached the
           checkout.
@@ -22,8 +16,9 @@
         <div class="img">
           kort bilder
         </div>
+        <span><p>TOTAL: {{orderSum}} SEK</p></span>
       </div>
-      <button @click="checkout()">CONTINUE TO CHECKOUT</button>
+      <button v-if="items >1" @click="checkout()">CONTINUE TO CHECKOUT</button>
     </div>
   </div>
 </template>
@@ -47,10 +42,21 @@ export default {
   computed:{
 
     items(){
-      return this.$store.getters.getCart
+      return this.$store.getters.getItemsAmount
+    },
+
+    orderSum(){
+      return this.$store.getters.orderTotal
     }
 
   },
+
+  created(){
+
+    if(this.$route.path == '/checkout' && this.items <1){
+      this.$router.push({ path: '/' })
+    }
+  }
 };
 </script>
 
