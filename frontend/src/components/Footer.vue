@@ -12,10 +12,16 @@
       <h3>Tel:<span> 08-557 683 53</span></h3>
     </div>
     <div class="logo">
-      <div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+      <div class="dots">
+        <div class="dot">
+          <img src="@/assets/kisthi.jpg" alt="">
+        </div>
+        <div class="dot">
+          <img src="@/assets/david.jpg" alt="">
+        </div>
+        <div class="dot">
+          <img src="@/assets/nedladdning.jpg" alt="">
+        </div>
       </div>
       <img src="@/assets/sinus-logo.svg" alt="Sinus logo" />
     </div>
@@ -60,14 +66,32 @@ export default {};
   margin-top: 2.5rem;
 }
 
-.dot {
-  height: 50px;
-  width: 50px;
-  margin: 0 10px 0 10px;
+.dots{
+  display: flex;
+  flex-direction: row;
+}
+
+.dot{
+  padding: 0.5em;
+  margin: 1em;
   background-color: #8382c2;
   border-radius: 50%;
-  display: inline-block;
 }
+
+.dot>img {
+  height: 50px;
+  width: auto;
+  margin: 0 10px 0 10px;
+  
+  border-radius: 50%;
+}
+
+/* .dot>img {
+  height: 100%;
+  width: auto;
+  margin: 0;
+
+} */
 
 .cards img {
   width: 4rem;
