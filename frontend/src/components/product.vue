@@ -46,6 +46,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
+  justify-content: stretch;
   .img {
     grid-column: 1 / end;
     grid-row: 1/5;
@@ -79,7 +80,7 @@ export default {
   }
   .add-cart {
     grid-column: 1/2;
-    grid-row: 2 / 4;
+    grid-row: 1 / 4;
   }
   .view-more {
     grid-column: 1/2;

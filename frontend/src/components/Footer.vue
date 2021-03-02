@@ -1,12 +1,16 @@
 <template>
   <footer class="footer">
-    <ul>
-      <li>Support</li>
-      <li>Customer service</li>
-      <li>Contact</li>
-      <li>Delivery info</li>
-      <li>Order status</li>
-    </ul>
+    <div class="address">
+      <h3>Address:</h3>
+      <address>
+        Årstaängsvägen 9
+        <br />
+        117 43
+        <br />
+        Stockholm
+      </address>
+      <h3>Tel:<span> 08-557 683 53</span></h3>
+    </div>
     <div class="logo">
       <div>
         <div class="dot"></div>
@@ -24,9 +28,7 @@
 </template>
 
 <script>
-export default {
-  
-};
+export default {};
 </script>
 
 <style scoped>
@@ -42,18 +44,13 @@ export default {
   text-align: center;
 }
 
-.footer ul {
+.footer .address {
   margin-top: 2rem;
   list-style-type: none;
   font-family: Arial;
   font-weight: 550;
-  text-transform: uppercase;
+  text-align: left;
 }
-
-.footer li {
-  margin: 0 15px 15px 0;
-}
-
 .logo {
   margin-top: 2rem;
 }

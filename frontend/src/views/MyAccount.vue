@@ -18,7 +18,6 @@
                 <p>{{user.address.street}}</p>
                 <p>{{user.address.zip}} {{user.address.city}}</p>
                 <p class="mail">Email: {{user.email}}</p>
-
                 <p class="bold link">Ändra mina uppgifter</p>
             </div>
         </div>    
