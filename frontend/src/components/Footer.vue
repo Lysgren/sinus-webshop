@@ -14,10 +14,10 @@
     <div class="logo">
       <div class="dots">
         <div class="dot">
-          <img src="@/assets/iconfinder_Facebook.svg" alt="">
+          <img src="@/assets/iconfinder_Instagram.svg" alt="">
         </div>
         <div class="dot">
-          <img src="@/assets/iconfinder_Instagram.svg" alt="">
+          <img src="@/assets/iconfinder_Facebook.svg" alt="">
         </div>
         <div class="dot">
           <img src="@/assets/iconfinder-Youtube.svg" alt="">
