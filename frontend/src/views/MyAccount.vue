@@ -46,9 +46,9 @@ export default {
   },
   mounted() {
     if (!this.$store.getters.getUserToken) {
-      this.$router.push("/");
+      this.$router.push("/")
     }
-    this.$store.dispatch("getOrders");
+    this.$store.dispatch('getOrders')
   },
   components: { OrderHistory },
 };

@@ -185,10 +185,6 @@ export default {
   }
 }
 
-button {
-  cursor: pointer;
-}
-
 .button-container {
   display: flex;
   justify-content: center;

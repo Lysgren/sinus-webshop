@@ -130,14 +130,15 @@ export default {
   align-items: center;
   background-color: black;
   height: 2rem;
-  /* width: 100vw; */
   margin: 0;
   padding: 0.4rem 1.6rem;
   height: 10vh;
   .logo-header {
     display: flex;
     h1 {
+      margin-top: 15px;
       color: white;
+      white-space:nowrap;
     }
     .logo {
       height: 100%;
@@ -178,10 +179,19 @@ button,
 }
 
 .number-display {
-  background-color: khaki;
+  background-color: yellow;
+  width:2rem;
+  height:2rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
+}
+
+.number-display p{
+  font-weight: bold;
 }
 </style>
