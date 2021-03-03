@@ -9,7 +9,7 @@
         <br />
         Stockholm
       </address>
-      <h3 class="tel">Tel:<span> 08-557 683 53</span></h3>
+      <p class="tel">Tel:<span> 08-557 683 53</span></p>
     </div>
     <div class="logo">
       <div class="dots">

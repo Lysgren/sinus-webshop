@@ -1,6 +1,5 @@
 <template>
   <div class="nav-bar">
-
     <div class="row">
       <div class="search-input">
         <img src="@/assets/prodNaviSearch.svg" alt="" />
