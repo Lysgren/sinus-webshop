@@ -1,6 +1,6 @@
 <template>
   <div class="other-M-A-L">
-    <h3>OTHERS ALSO LIKED...</h3>
+    <h3>OTHERS <br>ALSO<br>LIKED...</h3>
     <div class="product-list">
       <Product
         v-for="(product, index) of recommendedProducts"
@@ -35,14 +35,17 @@ export default {
 
 <style lang="scss" scoped>
 .other-M-A-L {
+  margin-bottom: 5em;
   display: flex;
   align-items: center;
   background: linear-gradient(180deg, rgba(77, 86, 109, 0) 0%, #4d566d 100%);
   width: 100%;
   h3 {
     color: white;
-    word-spacing: 9999rem;
+    font-size: 30px;
     padding: 0.8rem;
+    margin: 0 4em;
+    font-weight: 300;
   }
   h3 ~ h3 {
     /* Undo last assignment */
@@ -59,11 +62,12 @@ export default {
 
 // tas bort finns i products
 .product-list {
+  margin-right: 2em;
   padding: 0.8rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 8rem;
-  gap: 0.4rem;
+  grid-auto-rows: 14rem;
+  gap: 5rem;
   grid-auto-flow: row;
   height: fit-content;
 }

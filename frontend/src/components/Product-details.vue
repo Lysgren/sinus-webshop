@@ -80,6 +80,7 @@ export default {
 
 
 .details-wrapper {
+  margin-top: 5em;
   display: flex;
   flex-direction: column;
   background-color: white;
