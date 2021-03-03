@@ -1,11 +1,11 @@
 <template>
   <div class="hero-wrapper">
     <div class="image">
-      <img src="@/assets/hoodie-ocean.png" alt="">
+      <img :src="require(`@/assets/${product.imgFile}`)" alt="" :class="img">
     </div>
     <div class="info-text">
-      <h1>HOODIES</h1>
-      <p>499SEK</p>
+      <h1>{{product.title}}</h1>
+      <p>{{product.price}}SEK</p>
       <button @click="viewMore">BUY NOW</button>
     </div>
   </div>
@@ -15,7 +15,7 @@
 export default {
   methods: {
     viewMore() {
-      const id = 'DHV4Y1yTuipzetQ4'
+      const id = this.product._id
       this.$store.commit("setRelevantProduct");
       if (this.$route.params.id != undefined) {
         this.$route.params.id = "";
@@ -24,6 +24,27 @@ export default {
       } else {
         this.$router.push(`productPage/${id}`);
       }
+    }
+  },
+
+  computed: {
+    product(){
+      if(this.$store.getters.getRelevantProducts[0] == undefined){
+        return {
+          _id: 'test',
+          title: ' ',
+          price: 10,
+          imgFile: 'Blank.png',
+        }
+      } else {
+      return this.$store.getters.getRelevantProducts[0]
+      }
+    },
+    img(){
+      if(this.product.imgFile.includes('wheel')){
+        return 'wheel'
+      }
+      return 'img'
     }
   }
 }
@@ -50,6 +71,7 @@ export default {
 .info-text{
   margin-right: 18em;
   display: flex;
+  min-width: 15%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -59,12 +81,21 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  
+  justify-content: center;
+  align-items: center;
 }
 
 img{
   height: 100%;
   width: auto;
+}
+
+.img{
+  margin: 0;
+}
+
+.wheel{
+  margin-top: 8%;
 }
 
 h1{

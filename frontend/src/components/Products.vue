@@ -12,7 +12,7 @@
         />
       </div>
       <div v-else>Loading...</div>
-      <img src="@/assets/productArrows.svg" alt="" />
+      
     </div>
   </div>
 </template>
