@@ -1,11 +1,11 @@
 <template>
   <div class="hero-wrapper">
     <div class="image">
-      <img src="@/assets/hoodie-ocean.png" alt="">
+      <img :src="require(`@/assets/${product.imgFile}`)" alt="">
     </div>
     <div class="info-text">
-      <h1>HOODIES</h1>
-      <p>499SEK</p>
+      <h1>{{product.title}}</h1>
+      <p>{{product.price}}SEK</p>
       <button @click="viewMore">BUY NOW</button>
     </div>
   </div>
@@ -15,7 +15,7 @@
 export default {
   methods: {
     viewMore() {
-      const id = 'DHV4Y1yTuipzetQ4'
+      const id = this.product._id
       this.$store.commit("setRelevantProduct");
       if (this.$route.params.id != undefined) {
         this.$route.params.id = "";
@@ -23,6 +23,21 @@ export default {
         this.$router.push(`${id}`);
       } else {
         this.$router.push(`productPage/${id}`);
+      }
+    }
+  },
+
+  computed: {
+    product(){
+      if(this.$store.getters.getRelevantProducts[0] == undefined){
+        return {
+          _id: 'test',
+          title: ' ',
+          price: 10,
+          imgFile: 'Blank.png',
+        }
+      } else {
+      return this.$store.getters.getRelevantProducts[0]
       }
     }
   }
