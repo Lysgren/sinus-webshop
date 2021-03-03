@@ -12,7 +12,7 @@ export default {
       state.error = true
       setTimeout(() => {
         state.error = false
-      }, 2000)
+      }, 3500)
     },
   },
   getters: {
@@ -60,12 +60,16 @@ export default {
         },
         body: JSON.stringify(payload),
       })
-      request.status == 200
-        ? context.dispatch("signIn", {
-            email: payload.email,
-            password: payload.password,
-          })
-        : context.commit("setError")
+      if (request.status == 200) {
+        context.dispatch("signIn", {
+          email: payload.email,
+          password: payload.password,
+        })
+        return true
+      } else {
+        context.commit("setError")
+        return false
+      }
     },
 
     async updateUser(context, payload) {

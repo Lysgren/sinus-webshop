@@ -1,23 +1,16 @@
 <template>
   <div class="login-user">
     <h1>Login to account</h1>
-    <form
-      @submit.prevent="submit"
-      class="login-user-inputs"
-      :class="{ error: error }"
-    >
+    <form @submit.prevent="submit" class="login-user-inputs" :class="{ error: error }">
       <label name="name" for="email">Email</label>
       <input name="name" v-model="email" type="email" placeholder="email" />
       <label name="password" for="password">Password</label>
-      <input
-        name="password"
-        v-model="password"
-        type="password"
-        placeholder="password"
-      />
-      <button>Logga in</button>
+      <input name="password" v-model="password" type="password" placeholder="password"/>
       <span v-if="error == true">Wrong email or password</span>
     </form>
+      <div class="button-container">
+        <button v-on:click="submit">Logga in</button>
+      </div>
   </div>
 </template>
 
@@ -47,7 +40,7 @@ export default {
   watch: {
     loggedIn(value) {
       if (value) {
-        this.$router.push("/");
+        this.$router.push("/")
       }
     }
   }
@@ -76,4 +69,12 @@ export default {
     padding: 0.24rem;
   }
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.button-container button{ width: 100%; }
+
 </style>
