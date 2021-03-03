@@ -20,7 +20,7 @@
         <p>{{ product.color }}</p>
         <p class="bold">{{ product.price }} SEK</p>
         <p class="center desc">{{ product.longDesc }}</p>
-        <button class="bold" @click="addToCart()">ADD TO CART</button>
+        <button class="add-to-cart" @click="addToCart()">ADD TO CART</button>
         <p class="message" v-if="message"> {{ message }} </p>
       </div>
     </div>
@@ -86,21 +86,7 @@ export default {
   background-color: white;
   height: auto;
   padding: 4em 2em;
-}
-
-button {
-  background-color: black;
-  width: 13em;
-  height: 2em;
-  color: white;
-  margin-top: 1em;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: white;
-  color: black;
-  border: 1px solid black;
+  font-family: "Arial";
 }
 
 select {
@@ -114,6 +100,11 @@ select {
   margin-right: 3em;
   margin-bottom: 1em;
   cursor: pointer;
+}
+
+.back > * {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .back:hover {
@@ -173,5 +164,28 @@ select {
 
 .center {
   text-align: center;
+}
+
+.add-to-cart { 
+  width: 100%;
+  background-color: #0a0909;
+  border: none;
+  color: #ffffff;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #0a0909;
+  text-decoration: none;
+}
+.add-to-cart:hover {
+  background-color: #ffffff;
+  color: #0a0909;
+  transition: 0.5s;
 }
 </style>

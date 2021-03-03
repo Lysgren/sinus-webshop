@@ -130,14 +130,15 @@ export default {
   align-items: center;
   background-color: black;
   height: 2rem;
-  /* width: 100vw; */
   margin: 0;
   padding: 0.4rem 1.6rem;
   height: 10vh;
   .logo-header {
     display: flex;
     h1 {
+      margin-top: 15px;
       color: white;
+      white-space:nowrap;
     }
     .logo {
       height: 100%;

@@ -5,7 +5,6 @@
         <img src="@/assets/prodNaviSearch.svg" alt="" />
         <input v-on:input="search" v-model="searchStr" type="text" placeholder="Search for products" />
       </div>
-
       <details class="custom-select">
         <summary class="radios">
           <input type="radio" name="item" id="default" title="Sort products" checked>
@@ -21,10 +20,7 @@
         <li><button v-on:click="sortByName('startZ')">Name Z - A</button></li>
       </ul>
     </details>
-
     </div>
-
-    <img src="@/assets/navSortLogo.svg" alt="" />
   </div>
 </template>
 
@@ -103,6 +99,8 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  margin-left: 55%;
+  z-index: 999;
 }
 
 details {

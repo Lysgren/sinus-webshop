@@ -58,17 +58,21 @@ export default {};
 }
 
 address{
+  font-family: "Arial";
   font-style: normal;
   font-weight: 300;
   line-height: 150%;
 }
 
 h3{
-  font-weight: 400;
+  font-family: "Arial";
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .tel{
   margin-top: 10px;
+  font-family: "Arial";
 }
 
 .logo {

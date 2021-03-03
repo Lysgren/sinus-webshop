@@ -82,6 +82,7 @@ export default {
     text-decoration: none;
     text-align: center;
     color: black;
+    font-family: "Arial";
   }
   .hover-div {
     grid-column: 2/5;
@@ -104,6 +105,8 @@ export default {
     text-align: center;
     grid-column: 2/5;
     grid-row: 5 / end;
+    margin-top: 10px;
+    font-family: "Arial";
     word-spacing: 9999rem;
   }
   h4 ~ h4 {
