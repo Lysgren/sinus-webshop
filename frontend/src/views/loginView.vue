@@ -55,7 +55,7 @@ export default {
   justify-content: center;
   align-items: center;
   background: #dcdcdc;
-  padding: 4.8rem;
+  padding: 3em 0;
   height: 100%;
   width: 100%;
   .login-view-center {

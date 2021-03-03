@@ -18,7 +18,7 @@
                 <p>{{user.address.street}}</p>
                 <p>{{user.address.zip}} {{user.address.city}}</p>
                 <p class="mail">Email: {{user.email}}</p>
-                <p class="bold link">Ändra mina uppgifter</p>
+                <router-link class="bold link" to="/edit">Ändra mina uppgifter</router-link>
             </div>
         </div>    
     </div>
@@ -39,10 +39,10 @@ export default {
         } 
     },
     mounted(){
-        this.$store.dispatch('getOrders')
         if (!this.$store.getters.getUserToken) {
             this.$router.push("/")
         }
+            this.$store.dispatch('getOrders')
     },
     components: { OrderHistory }
 }
