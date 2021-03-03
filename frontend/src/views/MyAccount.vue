@@ -24,9 +24,9 @@
         <p>{{ user.address.street }}</p>
         <p>{{ user.address.zip }} {{ user.address.city }}</p>
         <p class="mail">Email: {{ user.email }}</p>
-        <router-link class="bold link" to="/edit"
+        <!-- <router-link class="bold link" to="/edit"
           >Ändra mina uppgifter</router-link
-        >
+        > -->
       </div>
     </div>
   </div>
@@ -56,6 +56,7 @@ export default {
 
 <style scoped>
 .account-page-wrapper {
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,7 +74,6 @@ export default {
   width: 90vw;
   padding: 2em 2em;
   background-color: white;
-  border: 1px solid black;
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
@@ -91,6 +91,7 @@ export default {
   flex-direction: column;
   line-height: 130%;
   width: 40%;
+  font-size: 20px;
 }
 
 .bold {
@@ -108,8 +109,13 @@ export default {
 }
 
 h3 {
+  text-align: center;
+  border-radius: 9px;
   margin-bottom: 1.5em;
-  text-decoration: underline;
+  color: white;
+  background-color: black;
+  padding: 1em;
+  width: 80%;
 }
 
 .mail {
