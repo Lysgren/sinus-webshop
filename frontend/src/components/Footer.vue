@@ -9,18 +9,18 @@
         <br />
         Stockholm
       </address>
-      <h3>Tel:<span> 08-557 683 53</span></h3>
+      <h3 class="tel">Tel:<span> 08-557 683 53</span></h3>
     </div>
     <div class="logo">
       <div class="dots">
         <div class="dot">
-          <img src="@/assets/kisthi.jpg" alt="">
+          <img src="@/assets/iconfinder_Facebook.svg" alt="">
         </div>
         <div class="dot">
-          <img src="@/assets/david.jpg" alt="">
+          <img src="@/assets/iconfinder-Youtube.svg" alt="">
         </div>
         <div class="dot">
-          <img src="@/assets/nedladdning.jpg" alt="">
+          <img src="@/assets/iconfinder_Instagram.svg" alt="">
         </div>
       </div>
       <img src="@/assets/sinus-logo.svg" alt="Sinus logo" />
@@ -53,10 +53,24 @@ export default {};
 .footer .address {
   margin-top: 2rem;
   list-style-type: none;
-  font-family: Arial;
-  font-weight: 550;
+  font-weight: 400;
   text-align: left;
 }
+
+address{
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%;
+}
+
+h3{
+  font-weight: 400;
+}
+
+.tel{
+  margin-top: 10px;
+}
+
 .logo {
   margin-top: 2rem;
 }
@@ -71,27 +85,13 @@ export default {};
   flex-direction: row;
 }
 
-.dot{
-  padding: 0.5em;
-  margin: 1em;
-  background-color: #8382c2;
-  border-radius: 50%;
-}
-
 .dot>img {
   height: 50px;
   width: auto;
   margin: 0 10px 0 10px;
-  
   border-radius: 50%;
+  cursor: pointer;
 }
-
-/* .dot>img {
-  height: 100%;
-  width: auto;
-  margin: 0;
-
-} */
 
 .cards img {
   width: 4rem;
