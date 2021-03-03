@@ -52,7 +52,7 @@ export default {
     error() {
       return this.$store.getters.getError;
     }
-  } 
+  }
 }
 </script>
 
