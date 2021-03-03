@@ -17,10 +17,10 @@
           <img src="@/assets/iconfinder_Facebook.svg" alt="">
         </div>
         <div class="dot">
-          <img src="@/assets/iconfinder-Youtube.svg" alt="">
+          <img src="@/assets/iconfinder_Instagram.svg" alt="">
         </div>
         <div class="dot">
-          <img src="@/assets/iconfinder_Instagram.svg" alt="">
+          <img src="@/assets/iconfinder-Youtube.svg" alt="">
         </div>
       </div>
       <img src="@/assets/sinus-logo.svg" alt="Sinus logo" />
