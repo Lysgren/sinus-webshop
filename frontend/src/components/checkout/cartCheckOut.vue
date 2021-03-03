@@ -8,11 +8,10 @@
     <div class="cart-order">
       <div class="cart-order-sum">
         <p>
-          Prices and delivery costs are not confirmed until you've reached the
-          checkout.
+         Continue to checkout for payment options.
         </p>
-        <p>We accept:</p>
-        <div class="img">kort bilder</div>
+
+        
         <span
           ><p>TOTAL: {{ orderSum }} SEK</p></span
         >

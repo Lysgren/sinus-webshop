@@ -2,17 +2,17 @@
   <div class="checkout-view home">
     <div class="checkout-flow-banner" v-show="status != 'response'">
       <div class="flow-banner-item">
-        <img src="@/assets/fastDelivery.svg" alt="" />
+        <img src="@/assets/shoeStore.svg" alt="" />
         <h4>1. Collect</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
       <div class="flow-banner-item">
-        <img src="@/assets/shoeStore.svg" alt="" />
+        <img src="@/assets/securePayment.svg" alt="" />
         <h4>2. Secure Payment</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
       <div class="flow-banner-item">
-        <img src="@/assets/securePayment.svg" alt="" />
+        <img src="@/assets/fastDelivery.svg" alt="" />
         <h4>3. Fast Delivery</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>

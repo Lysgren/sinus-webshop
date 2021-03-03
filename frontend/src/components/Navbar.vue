@@ -179,10 +179,19 @@ button,
 }
 
 .number-display {
-  background-color: khaki;
+  background-color: yellow;
+  width:2rem;
+  height:2rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0.5rem;
+}
+
+.number-display p{
+  font-weight: bold;
 }
 </style>

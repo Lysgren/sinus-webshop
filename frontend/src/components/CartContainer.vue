@@ -17,7 +17,9 @@
       <p>{{ orderTotal }} SEK</p>
     </span>
     <div class="continue">
+      <div class="button-container">
       <button @click="toCheckout()">Continue</button>
+      </div>
       <p>Klicka för att komma vidare till checkout</p>
     </div>
   </div>
@@ -73,9 +75,10 @@ export default {
   left: 0;
   margin: auto;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.541);
-  z-index: 14;
+  z-index: 200;
   display: flex;
   flex-direction: column;
+  
 }
 
 .cart-container-top {
@@ -102,13 +105,37 @@ export default {
   font-size: 0.6em;
 }
 
-button {
-  background-color: black;
-  width: 13em;
-  height: 2em;
-  color: white;
-  margin-top: 1em;
+
+
+
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+.button-container button {
+  width: 100%;
+  background-color: #ffffff;
+  border: none;
+  color: #0a0909;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
   cursor: pointer;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #0a0909;
+  text-decoration: none;
+}
+.button-container button:hover {
+  background-color: #0a0909;
+  color: #ffffff;
+  transition: 0.5s;
 }
 
 button:hover {

@@ -100,7 +100,7 @@ export default {
   justify-content: center;
   align-content: center;
   margin-left: 55%;
-  z-index: 999;
+  z-index: 100;
 }
 
 details {
