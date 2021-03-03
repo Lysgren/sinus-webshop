@@ -1,6 +1,6 @@
 <template>
   <div class="checkout">
-    <div class="billing-address" v-if="loggedIn">
+    <div class="billing-address" v-if="loggedIn == false">
       <h4>Billing Address</h4>
       <div class="billing-address-inputs address-inputs">
         <label for="name">NAME:</label>
@@ -48,6 +48,7 @@
           <input type="text" name="CVV" />
         </div>
       </div>
+      <p v-if="error">{{ errorMessage }}</p>
       <button @click="placeOrder()">PLACE ORDER</button>
     </div>
   </div>
@@ -58,26 +59,31 @@ export default {
   data() {
     return {
       loggedIn: false,
+      errorMessage: "You cannot leave fields empty",
+      error: false,
     }
   },
   methods: {
     placeOrder() {
-      const cart = this.$store.getters.getCart
+      
+      
+        const cart = this.$store.getters.getCart
 
-      let products = []
+        let products = []
 
-      for (let current of cart) {
-        for (let i = 0; i < current.amount; i++) {
-          products.push(current._id)
+        for (let current of cart) {
+          for (let i = 0; i < current.amount; i++) {
+            products.push(current._id)
+          }
         }
-      }
-      if (this.loggedIn == true) {
-        this.$store.dispatch("placeOrderReg", products)
-      } else {
-        this.$store.dispatch("placeOrder", products)
-      }
-      this.$store.commit("emptyCart")
-      this.$emit("clicked", "response")
+        if (this.loggedIn == true) {
+          this.$store.dispatch("placeOrderReg", products)
+        } else {
+          this.$store.dispatch("placeOrder", products)
+        }
+        this.$store.commit("emptyCart")
+        this.$emit("clicked", "response")
+      
     },
   },
   computed: {
@@ -90,9 +96,9 @@ export default {
   },
   created() {
     if (sessionStorage.getItem("token")) {
-      this.loggedIn = false
-    } else {
       this.loggedIn = true
+    } else {
+      this.loggedIn = false
     }
   },
 }
@@ -127,5 +133,9 @@ export default {
   .card-inputs {
     padding: 0.8rem;
   }
+}
+
+button {
+  cursor: pointer;
 }
 </style>
