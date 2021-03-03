@@ -75,7 +75,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
 }
 
 .image{
@@ -84,7 +83,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
 }
 
 img{
