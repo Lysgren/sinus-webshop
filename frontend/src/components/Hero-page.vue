@@ -71,10 +71,11 @@ export default {
 .info-text{
   margin-right: 18em;
   display: flex;
-  width: auto;
+  min-width: 15%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid red;
 }
 
 .image{
@@ -83,6 +84,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid red;
 }
 
 img{
