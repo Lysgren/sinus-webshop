@@ -47,7 +47,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 .checkout-view {
   height: 100%;
   width: 100%;

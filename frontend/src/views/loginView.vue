@@ -47,7 +47,11 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
 <style lang="scss">
+=======
+<style lang="scss" scoped>
+>>>>>>> ordersStyle
 .login-view {
   display: flex;
   justify-content: center;
