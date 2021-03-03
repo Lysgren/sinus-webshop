@@ -1,7 +1,7 @@
 <template>
   <div class="hero-wrapper">
     <div class="image">
-      <img :src="require(`@/assets/${product.imgFile}`)" alt="">
+      <img :src="require(`@/assets/${product.imgFile}`)" alt="" :class="img">
     </div>
     <div class="info-text">
       <h1>{{product.title}}</h1>
@@ -39,6 +39,12 @@ export default {
       } else {
       return this.$store.getters.getRelevantProducts[0]
       }
+    },
+    img(){
+      if(this.product.imgFile.includes('wheel')){
+        return 'wheel'
+      }
+      return 'img'
     }
   }
 }
@@ -65,6 +71,7 @@ export default {
 .info-text{
   margin-right: 18em;
   display: flex;
+  width: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -74,12 +81,21 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  
+  justify-content: center;
+  align-items: center;
 }
 
 img{
   height: 100%;
   width: auto;
+}
+
+.img{
+  margin: 0;
+}
+
+.wheel{
+  margin-top: 8%;
 }
 
 h1{
