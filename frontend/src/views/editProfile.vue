@@ -36,7 +36,9 @@
         type="text"
         placeholder="city"
       />
+    <div class="button-container">
       <button>Uppdatera</button>
+    </div>
     </form>
   </div>
 </template>
@@ -81,7 +83,7 @@ export default {
 <style lang="scss" scoped >
 .login-user {
   min-height: 60vh;
-  height: fit-content;
+  height: fit-content; 
   padding: 6.4rem;
   display: flex;
   align-items: center;
@@ -95,15 +97,21 @@ export default {
     grid-auto-rows: auto;
     gap: 1rem;
     min-width: 24rem;
-    padding: 1.28rem;
+    padding: 0.24rem;
     height: 100%;
     width: 100%;
     label {
       padding: 0.24rem;
     }
-    input {
-      width: 100%;
-    }
   }
 }
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  button {
+    width: 100%;
+  }
+}
+
 </style>
