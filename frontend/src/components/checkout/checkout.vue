@@ -4,15 +4,15 @@
       <h4>Billing Address</h4>
       <div class="billing-address-inputs address-inputs">
         <label for="name">NAME:</label>
-        <input type="text" name="name" />
+        <input v-model="userCheck.name" type="text" name="name" />
         <label for="Address1">ADDRESS:</label>
-        <input type="text" name="Address1" />
+        <input v-model="userCheck.address" type="text" name="Address1" />
         <label for="zip">ZIP</label>
-        <input type="text" name="zip" />
+        <input v-model="userCheck.zip" type="text" name="zip" />
         <label for="city">CITY:</label>
-        <input type="text" name="city" />
+        <input v-model="userCheck.city" type="text" name="city" />
         <label for="Mail">EMAIL:</label>
-        <input type="text" name="Mail" />
+        <input v-model="userCheck.email" type="text" name="Mail" />
       </div>
     </div>
     <div class="billing-address address-inputs" v-else>
@@ -35,17 +35,19 @@
 
         <div class="card-alternative">
           <div class="card-inputs">
-            <input name="Visa" type="checkbox" />
-            <label for="Visa">Visa</label>
-            <input name="Mastercard" type="checkbox" />
-            <label for="Mastercard">Mastercard</label>
+            <select>
+              <option>Mastercard</option>
+               <option>Visa</option>
+            </select>
           </div>
+
+
           <label for="Cardname">NAME:</label>
-          <input type="text" name="Cardname" />
+          <input v-model="cardCheck.cardHolder" type="text" name="Cardname" />
           <label for="CardNr">CARD NR:</label>
-          <input type="text" name="CardNr" />
+          <input v-model="cardCheck.cardNumber" type="text" name="CardNr" />
           <label for="CVV">CVV:</label>
-          <input type="text" name="CVV" />
+          <input v-model="cardCheck.cardCVV" type="text" name="CVV" />
         </div>
       </div>
       <p v-if="error">{{ errorMessage }}</p>
@@ -61,12 +63,45 @@ export default {
       loggedIn: false,
       errorMessage: "You cannot leave fields empty",
       error: false,
+      userCheck: {
+        name: "",
+        address: "",
+        email: "",
+        city: "",
+        zip: "",
+      },
+      cardCheck: {
+        cardNumber: "",
+        cardHolder: "",
+        cardCVV: "",
+      },
     }
   },
   methods: {
+    checkValues() {
+      let userValues = Object.entries(this.userCheck)
+      let cardValues = Object.entries(this.cardCheck)
+
+      for (let current of cardValues) {
+        if (current[1].length < 1) {
+          return (this.error = true)
+        } else {
+          return (this.error = false)
+        }
+      }
+
+      for (let current of userValues) {
+        if (this.loggedIn == false && current[1].length < 1) {
+          return (this.error = true)
+        }else{
+          return (this.error = false)
+        }
+      }
+    },
     placeOrder() {
-      
-      
+      this.checkValues()
+
+      if (this.error == false) {
         const cart = this.$store.getters.getCart
 
         let products = []
@@ -83,7 +118,9 @@ export default {
         }
         this.$store.commit("emptyCart")
         this.$emit("clicked", "response")
-      
+      } else {
+        return
+      }
     },
   },
   computed: {
