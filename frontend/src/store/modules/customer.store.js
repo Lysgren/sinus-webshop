@@ -81,13 +81,16 @@ export default {
         },
         body: JSON.stringify(payload),
       })
+
       let responseData = 0
       if (request.status == 200) {
         responseData = await request.json()
+        context.commit("setUserData", responseData)
+        return true
       } else {
         context.commit("setError")
+        return false
       }
-      context.commit("setUserData", responseData)
     },
     signOut(context) {
       context.commit("setToken", "")

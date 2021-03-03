@@ -1,12 +1,19 @@
 <template>
   <div class="login-user">
-    <form @submit.prevent="updateUser" class="login-user-inputs">
+    <form @submit.prevent="updateUser" class="login-user-inputs" :class="{ error: error }">
       <label for="mail">Email</label>
       <input
         v-model="editUser.email"
         name="mail"
         type="email"
         placeholder="mail"
+      />
+      <label for="name">Password</label>
+      <input
+        name="password"
+        v-model="password"
+        type="password"
+        placeholder="password"
       />
       <label for="name">Name</label>
       <input
@@ -36,6 +43,7 @@
         type="text"
         placeholder="city"
       />
+      <span v-if="error == true">Information entered incorrectly...</span>
       <button>Uppdatera</button>
     </form>
   </div>
@@ -47,27 +55,32 @@ export default {
     return {
       editUser: {
         email: "",
-        password: "",
         name: "",
         address: {
           street: "",
           zip: "",
           city: "",
-        },
+        }
       },
-    };
+      password: ""
+    }
   },
   methods: {
-    updateUser() {
-      const payload = this.editUser;
-      this.$store.dispatch("updateUser", payload);
-      this.$emit("clicked", "response");
+    async updateUser() {
+      this.editUser["password"] = this.password
+      const value = await this.$store.dispatch("updateUser", this.editUser)
+      if (value == true) {
+        this.$router.push('/')
+      }
     },
   },
   computed: {
     userData() {
       return this.$store.getters.getUserData;
     },
+    error() {
+      return this.$store.getters.getError;
+    }
   },
   mounted() {
     if (!this.$store.getters.getUserToken) {
@@ -79,6 +92,14 @@ export default {
 </script>
 
 <style lang="scss" scoped >
+.error {
+  label,
+  button,
+  input {
+    color: red;
+  }
+}
+
 .login-user {
   min-height: 60vh;
   height: fit-content;
