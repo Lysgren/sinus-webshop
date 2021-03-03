@@ -73,6 +73,7 @@ h3{
 
 .logo {
   margin-top: 2rem;
+  margin-left: 4.8em;
 }
 
 .logo img {
