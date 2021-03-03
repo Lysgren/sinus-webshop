@@ -18,7 +18,7 @@
         </div>
         <span><p>TOTAL: {{orderSum}} SEK</p></span>
       </div>
-      <button v-if="items >1" @click="checkout()">CONTINUE TO CHECKOUT</button>
+      <button v-if="items >0" @click="checkout()">CONTINUE TO CHECKOUT</button>
     </div>
   </div>
 </template>
