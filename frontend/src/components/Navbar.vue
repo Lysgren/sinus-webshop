@@ -1,45 +1,51 @@
 <template>
   <div class="navbar">
-    <img
-      class="logo"
-      @click="navHome"
-      src="@/assets/sinus-logo.svg"
-      alt="sinus logo"
-    />
-    <button @click="logOut" v-if="loggedIn">Log out</button>
-    <button @click="logIn" v-else>Logga in</button>
-    <button @click="createProduct" v-if="admin">Create product</button>
-    
-
-    <div class="account" v-if="loggedIn">
-      <img v-if="!admin" @click="account" src="@/assets/iconfinder-account.svg" alt="">
-      <button v-if="admin" @click="account">Profile</button>
-    </div>
-
-    <div class="cart-icon-wrapper" v-if="currentRoute != '/checkout'">
+    <div class="logo-header">
       <img
-        class="cart-img"
-        :style="{ cursor: cursor }"
-        @click="toggleCart"
-        src="@/assets/icon-bag-white.svg"
-        alt="shoppingcart"
+        class="logo"
+        @click="navHome"
+        src="@/assets/sinus-logo.svg"
+        alt="sinus logo"
       />
-      <div class="number-display" v-if="cartItemsAmount > 0">
-        <p>{{ cartItemsAmount }}</p>
-      </div>
+      <h1>Sinus Webshop</h1>
     </div>
+    <nav class="nav-header">
+      <button @click="logOut" v-if="loggedIn">Log out</button>
+      <button @click="logIn" v-else>Logga in</button>
+      <button @click="createProduct" v-if="admin">Create product</button>
+      <button v-if="admin && loggedIn" @click="account">Profile</button>
+      <img
+        v-if="!admin"
+        @click="account"
+        class="account"
+        src="@/assets/iconfinder-account.svg"
+        alt=""
+      />
+      <div class="cart-icon-wrapper" v-if="currentRoute != '/checkout'">
+        <img
+          class="cart-img"
+          :style="{ cursor: cursor }"
+          @click="toggleCart"
+          src="@/assets/icon-bag-white.svg"
+          alt="shoppingcart"
+        />
+        <div class="number-display" v-if="cartItemsAmount > 0">
+          <p>{{ cartItemsAmount }}</p>
+        </div>
+      </div>
+    </nav>
     <shoppingCart v-if="displayCart" @close="toggleCart" />
   </div>
 </template>
 
 <script>
-import shoppingCart from "@/components/CartContainer.vue"
+import shoppingCart from "@/components/CartContainer.vue";
 export default {
   data() {
     return {
       displayCart: false,
       cursor: "auto",
-    }
+    };
   },
   components: {
     shoppingCart,
@@ -48,92 +54,123 @@ export default {
   methods: {
     toggleCart() {
       if (this.cartItemsAmount < 1) {
-        this.displayCart = false
+        this.displayCart = false;
       }
 
       if (this.cartItemsAmount > 0) {
-        this.displayCart = !this.displayCart
+        this.displayCart = !this.displayCart;
       }
     },
     logIn() {
       if (this.$route.path != "/login") {
-        this.$router.push("/login")
+        this.$router.push("/login");
       }
     },
     logOut() {
-      this.$store.dispatch("signOut")
+      this.$store.dispatch("signOut");
       if (this.$route.path != "/") {
-        this.$router.push("/")
+        this.$router.push("/");
       }
     },
     navHome() {
       if (this.$route.path != "/") {
-        this.$router.push("/")
+        this.$router.push("/");
       }
     },
     edit() {
       if (this.$route.path != "/edit") {
-        this.$router.push("/edit")
+        this.$router.push("/edit");
       }
     },
     account() {
       if (this.$route.path != "/myaccount") {
-        this.$router.push("/myaccount")
+        this.$router.push("/myaccount");
       }
     },
     createProduct() {
       if (this.$route.path != "/createProduct") {
-        this.$router.push("/createProduct")
+        this.$router.push("/createProduct");
       }
     },
   },
   computed: {
     loggedIn() {
-      return this.$store.getters.getUserToken
+      return this.$store.getters.getUserToken;
     },
     admin() {
-      return this.$store.getters.getUserData.role == "admin" ? true : false
+      return this.$store.getters.getUserData.role == "admin" ? true : false;
     },
 
     cartItemsAmount() {
-      return this.$store.getters.getItemsAmount
+      return this.$store.getters.getItemsAmount;
     },
 
     currentRoute() {
-      return this.$route.path
+      return this.$route.path;
     },
   },
 
   watch: {
     cartItemsAmount(value) {
       if (value < 1) {
-        this.cursor = "auto"
+        this.cursor = "auto";
       } else {
-        this.cursor = "pointer"
+        this.cursor = "pointer";
       }
     },
   },
-}
+};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .navbar {
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: black;
   height: 2rem;
   /* width: 100vw; */
   margin: 0;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 1.6rem;
+  height: 10vh;
+  .logo-header {
+    display: flex;
+    h1 {
+      color: white;
+    }
+    .logo {
+      height: 100%;
+    }
+  }
+  button {
+    height: fit-content;
+    font-size: 1.2rem;
+    padding: 0.48rem;
+    border-width: 2px;
+    border-color: #CCCCCC;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-style: solid;
+    border-radius: 8px;
+  }
+  .nav-header {
+    min-width: 24vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cart-img, .account {
+    max-height: 100%;
+    min-width: 2.4rem;
+  }
 }
 
 .navbar .logo,
-.navbar button {
+.navbar,
+button,
+.account {
   cursor: pointer;
-}
-.cart-img {
-  width: 1rem;
 }
 
 .pointer {
@@ -147,9 +184,4 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
-.account{
-  cursor: pointer;
-}
-
 </style>

@@ -28,7 +28,6 @@
         :value="item"
       />
     </div>
-    <form action=""></form>
     <div class="payment-methods">
       <div class="payment-methods-inputs address-inputs">
         <h4>Payment Methods</h4>
