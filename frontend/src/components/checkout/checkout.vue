@@ -36,10 +36,9 @@
           <div class="card-inputs">
             <select>
               <option>Mastercard</option>
-               <option>Visa</option>
+              <option>Visa</option>
             </select>
           </div>
-
 
           <label for="Cardname">NAME:</label>
           <input v-model="cardCheck.cardHolder" type="text" name="Cardname" />
@@ -50,7 +49,9 @@
         </div>
       </div>
       <p v-if="error">{{ errorMessage }}</p>
-      <button @click="placeOrder()">PLACE ORDER</button>
+      <div class="button-container">
+        <button @click="placeOrder()">PLACE ORDER</button>
+      </div>
     </div>
   </div>
 </template>
@@ -74,70 +75,70 @@ export default {
         cardHolder: "",
         cardCVV: "",
       },
-    }
+    };
   },
   methods: {
     checkValues() {
-      let userValues = Object.entries(this.userCheck)
-      let cardValues = Object.entries(this.cardCheck)
+      let userValues = Object.entries(this.userCheck);
+      let cardValues = Object.entries(this.cardCheck);
 
       for (let current of cardValues) {
         if (current[1].length < 1) {
-          return (this.error = true)
+          return (this.error = true);
         } else {
-          return (this.error = false)
+          return (this.error = false);
         }
       }
 
       for (let current of userValues) {
         if (this.loggedIn == false && current[1].length < 1) {
-          return (this.error = true)
-        }else{
-          return (this.error = false)
+          return (this.error = true);
+        } else {
+          return (this.error = false);
         }
       }
     },
     placeOrder() {
-      this.checkValues()
+      this.checkValues();
 
       if (this.error == false) {
-        const cart = this.$store.getters.getCart
+        const cart = this.$store.getters.getCart;
 
-        let products = []
+        let products = [];
 
         for (let current of cart) {
           for (let i = 0; i < current.amount; i++) {
-            products.push(current._id)
+            products.push(current._id);
           }
         }
         if (this.loggedIn == true) {
-          this.$store.dispatch("placeOrderReg", products)
+          this.$store.dispatch("placeOrderReg", products);
         } else {
-          this.$store.dispatch("placeOrder", products)
+          this.$store.dispatch("placeOrder", products);
         }
-        this.$store.commit("emptyCart")
-        this.$emit("clicked", "response")
+        this.$store.commit("emptyCart");
+        this.$emit("clicked", "response");
       } else {
-        return
+        return;
       }
     },
   },
   computed: {
     getToken() {
-      return this.$store.getters.getUserToken
+      return this.$store.getters.getUserToken;
     },
     getUser() {
-      return this.$store.getters.getUserData
+      return this.$store.getters.getUserData;
     },
   },
   created() {
     if (sessionStorage.getItem("token")) {
-      this.loggedIn = true
+      this.loggedIn = true;
     } else {
-      this.loggedIn = false
+      this.loggedIn = false;
     }
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -146,12 +147,25 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   background: #f4f4f4;
   padding: 2.4rem;
+  min-height: 60vh;
   .payment-methods {
     button {
       justify-self: flex-end;
       align-self: flex-end;
     }
   }
+  input {
+    position: relative;
+    font-size: 16px;
+    border-width: 2px;
+    border-color: #cccccc;
+    background-color: #ffffff;
+    color: #000000;
+    border-style: solid;
+    border-radius: 8px;
+    outline: none;
+  }
+
 }
 .address-inputs {
   display: flex;
@@ -173,5 +187,33 @@ export default {
 
 button {
   cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+.button-container button {
+  width: 100%;
+  background-color: #ffffff;
+  border: none;
+  color: #0a0909;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #0a0909;
+  text-decoration: none;
+}
+.button-container button:hover {
+  background-color: #0a0909;
+  color: #ffffff;
+  transition: 0.5s;
 }
 </style>
