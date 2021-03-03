@@ -186,7 +186,7 @@ button,
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0.5rem;
 }
