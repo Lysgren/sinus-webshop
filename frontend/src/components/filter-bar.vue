@@ -24,8 +24,6 @@
     </details>
 
     </div>
-
-    <img src="@/assets/navSortLogo.svg" alt="" />
   </div>
 </template>
 
