@@ -6,7 +6,9 @@
       <div v-else>
         <p>här är ditt respons</p>
       </div>
-      <button v-on:click="toggle">{{ infoStr }}</button>
+      <div class="button-container">
+        <button v-on:click="toggle">{{ infoStr }}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -16,10 +18,8 @@ import Login from "@/components/login/loginUser.vue";
 import Register from "@/components/login/register.vue";
 
 export default {
-  components: {
-    Login,
-    Register,
-  },
+  components: { Login, Register },
+
   data() {
     return {
       loginStatus: true,
@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     infoStr() {
-      return this.status == 'login' ? 'Already have an account? Press here to login' : 'Dont have an account? Press here to register one!'
+      return this.status == 'login' ? 'Dont have an account? Press here to register one!' : 'Already have an account? Press here to login'
     }
   },
   methods: {
@@ -49,11 +49,12 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 .login-view {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Courier New";
   background: #dcdcdc;
   padding: 3em 0;
   height: 100%;
@@ -63,4 +64,31 @@ export default {
     padding: 2.4rem;
   }
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.button-container button { 
+  width: 100%;
+  background-color: #ffffff;
+  border: none;
+  color: #0a0909;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #0a0909;
+  text-decoration: none;
+}
+.button-container button:hover {
+  background-color: #0a0909;
+  color: #ffffff;
+  transition: 0.5s;
+}
+
 </style>

@@ -9,7 +9,13 @@
     <button @click="logOut" v-if="loggedIn">Log out</button>
     <button @click="logIn" v-else>Logga in</button>
     <button @click="createProduct" v-if="admin">Create product</button>
-    <button @click="account" v-if="loggedIn">My Account</button>
+    
+
+    <div class="account" v-if="loggedIn">
+      <img v-if="!admin" @click="account" src="@/assets/iconfinder-account.svg" alt="">
+      <button v-if="admin" @click="account">Profile</button>
+    </div>
+
     <div class="cart-icon-wrapper" v-if="currentRoute != '/checkout'">
       <img
         class="cart-img"
@@ -141,4 +147,9 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+.account{
+  cursor: pointer;
+}
+
 </style>

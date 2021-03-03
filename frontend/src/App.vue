@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
-    <router-view />
+    <router-view id="main" />
     <Footer />
   </div>
 </template>
@@ -24,4 +24,9 @@ export default {
 #app {
   width: 100%;
 }
+
+#main {
+  min-height: 72vh;
+}
+
 </style>
