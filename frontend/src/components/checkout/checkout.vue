@@ -173,6 +173,7 @@ export default {
   input,
   label,
   select {
+    margin: 0.24rem;
     width: fit-content;
   }
 }
@@ -181,6 +182,7 @@ export default {
   flex-direction: column;
   width: fit-content;
   .card-inputs {
+    margin: 0.24rem;
     padding: 0.8rem;
   }
 }

@@ -10,12 +10,15 @@
     <div class="account-wrapper">
       <div class="prev-orders">
         <h3>Tidigare ordrar:</h3>
-        <div class="order-history">
+        <div class="order-history" v-if="orders.length > 0">
           <OrderHistory
             v-for="order in orders"
             :key="order._id"
             :order="order"
           />
+        </div>
+        <div class="order-history-none">
+          <p>No orders</p>
         </div>
       </div>
       <div class="account-info">
@@ -83,6 +86,11 @@ export default {
   flex-direction: column;
   height: 40vh;
   overflow-y: scroll;
+}
+.order-history {
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
 }
 .account-info,
 .prev-orders {
