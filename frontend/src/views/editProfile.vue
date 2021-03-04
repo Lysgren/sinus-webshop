@@ -73,7 +73,9 @@ export default {
   },
   methods: {
     async updateUser() {
-      this.editUser["password"] = this.password;
+      if (this.password.length > 0) {
+        this.editUser["password"] = this.password;
+      }
       const value = await this.$store.dispatch("updateUser", this.editUser);
       if (value == true) {
         this.$router.push("/");
