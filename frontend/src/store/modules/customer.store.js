@@ -82,10 +82,13 @@ export default {
         body: JSON.stringify(payload),
       })
 
-      let responseData = 0
+      //let responseData = 0
       if (request.status == 200) {
+        //responsData används inte längre.
+        /*
         responseData = await request.json()
         console.log(responseData)
+        */
         this.dispatch("getUser")
         //context.commit("setUserData", responseData)
         return true

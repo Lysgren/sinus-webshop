@@ -12,6 +12,7 @@
         type="email"
         placeholder="mail"
       />
+                     <!--
       <label for="name">Password</label>
       <input
         name="password"
@@ -19,6 +20,7 @@
         type="password"
         placeholder="password"
       />
+        -->
       <label for="name">Name</label>
       <input
         name="name"
@@ -68,14 +70,16 @@ export default {
           city: "",
         },
       },
-      password: "",
+      //password: "",
     };
   },
   methods: {
     async updateUser() {
+      /*
       if (this.password.length > 0) {
         this.editUser["password"] = this.password;
       }
+      */
       const value = await this.$store.dispatch("updateUser", this.editUser);
       if (value == true) {
         this.$router.push("/");
