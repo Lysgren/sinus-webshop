@@ -43,8 +43,7 @@ export default {
   h3 {
     color: white;
     font-size: 30px;
-    padding: 0.8rem;
-    margin: 0 4em;
+    padding: 4.8rem;
     font-weight: 300;
   }
   h3 ~ h3 {
@@ -53,7 +52,6 @@ export default {
     display: table-caption;
   }
   .product-list {
-    min-width: 70%;
     .product {
       border: 0.04rem solid white;
     }

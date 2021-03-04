@@ -15,7 +15,7 @@
       <button @click="createProduct" v-if="admin">Create product</button>
       <button v-if="admin && loggedIn" @click="account">Profile</button>
       <img
-        v-if="!admin"
+        v-if="!admin && loggedIn"
         @click="account"
         class="account"
         src="@/assets/iconfinder-account.svg"
