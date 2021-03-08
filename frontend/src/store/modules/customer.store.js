@@ -1,3 +1,5 @@
+import API from '@/api'
+
 export default {
   state: {
     userData: JSON.parse(sessionStorage.getItem("userData")) || {},
@@ -24,14 +26,7 @@ export default {
   },
   actions: {
     async signIn(context, payload) {
-      const request = await fetch("http://localhost:5000/api/auth", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      })
-
+      const request = await API.signInUser(payload)
       if (request.status == 200) {
         let responseData = await request.json()
         context.commit("setToken", responseData.token)
@@ -43,25 +38,15 @@ export default {
       }
     },
     async getUser(context) {
-      const request = await fetch("http://localhost:5000/api/me", {
-        headers: {
-          Authorization: `Bearer ${context.state.userToken}`,
-        },
-      })
-      const responseData = await request.json()
+      const token = context.state.userToken
+      const responseData = await API.getTheUser(token)
       context.commit("setUserData", responseData)
     },
 
     async registerUser(context, payload) {
-      const request = await fetch("http://localhost:5000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      })
-      if (request.status == 200) {
-        context.dispatch("signIn", {
+      const request = await API.registerTheUser(payload)
+      if (request == 200) {
+          context.dispatch("signIn", {
           email: payload.email,
           password: payload.password,
         })
@@ -73,24 +58,10 @@ export default {
     },
 
     async updateUser(context, payload) {
-      const request = await fetch("http://localhost:5000/api/me", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${context.state.userToken}`,
-        },
-        body: JSON.stringify(payload),
-      })
-
-      //let responseData = 0
-      if (request.status == 200) {
-        //responsData används inte längre.
-        /*
-        responseData = await request.json()
-        console.log(responseData)
-        */
+      const token = context.state.userToken
+      const request = await API.updateTheUser(payload, token)
+      if (request == 200) {
         this.dispatch("getUser")
-        //context.commit("setUserData", responseData)
         return true
       } else {
         context.commit("setError")
