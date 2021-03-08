@@ -9,7 +9,7 @@
       <span v-if="error == true">Wrong email or password</span>
     </form>
     <div class="button-container">
-      <button v-on:click="submit">Logga in</button>
+      <button v-on:click="submit">Log in</button>
     </div>
   </div>
 </template>

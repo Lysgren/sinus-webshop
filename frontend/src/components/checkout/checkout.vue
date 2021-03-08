@@ -48,7 +48,7 @@
           <input v-model="cardCheck.cardCVV" type="text" name="CVV" />
         </div>
       </div>
-      <p v-if="error">{{ errorMessage }}</p>
+      <p class="checkout-error" v-if="error">{{ errorMessage }}</p>
       <div class="button-container">
         <button @click="placeOrder()">PLACE ORDER</button>
       </div>
@@ -213,5 +213,9 @@ export default {
   background-color: #0a0909;
   color: #ffffff;
   transition: 0.5s;
+}
+
+.checkout-error{
+  color: red;
 }
 </style>

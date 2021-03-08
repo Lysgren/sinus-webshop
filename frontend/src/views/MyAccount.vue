@@ -18,7 +18,7 @@
           />
         </div>
         <div class="order-history-none">
-          <p>No orders</p>
+          <p v-if="orders.length <1">No orders</p>
         </div>
       </div>
       <div class="account-info">
