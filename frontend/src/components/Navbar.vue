@@ -7,11 +7,10 @@
         src="@/assets/sinus-logo.svg"
         alt="sinus logo"
       />
-      <h1>Sinus Webshop</h1>
     </div>
     <nav class="nav-header">
       <button @click="logOut" v-if="loggedIn">Log out</button>
-      <button @click="logIn" v-else>Logga in</button>
+      <button @click="logIn" v-else>Log in</button>
       <button @click="createProduct" v-if="admin">Create product</button>
       <button v-if="admin && loggedIn" @click="account">Profile</button>
       <img
@@ -128,7 +127,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
+  background-color: #303030;
   height: 2rem;
   margin: 0;
   padding: 0.4rem 1.6rem;
@@ -141,7 +140,8 @@ export default {
       white-space:nowrap;
     }
     .logo {
-      height: 100%;
+      height: 3rem;
+      margin: auto;
     }
   }
   button {
@@ -168,7 +168,6 @@ export default {
 }
 
 .navbar .logo,
-.navbar,
 button,
 .account {
   cursor: pointer;
