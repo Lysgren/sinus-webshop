@@ -76,8 +76,6 @@ export default {
   },
 
   async fetchOrders(token) {
-    
-
     const request = await fetch("http://localhost:5000/api/orders", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -87,4 +85,46 @@ export default {
     return responseData
   },
 
+  /********** Admin module **********/
+
+  createTheProduct: async (product, token) => {
+    // Gör en fetch-request där man skickar med token och produkten man vill skapa.
+    const request = await fetch('http://localhost:5000/api/products/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(product)
+    })
+    
+    return request.status
+  },
+
+  deleteTheProduct: async (id, token) => {
+    // Gör en DELETE-request där man skickar med token och produkten man vill skapa.
+    const request = await fetch('http://localhost:5000/api/products/' + id, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    return request.status
+  },
+
+  editTheProduct: async (product, token) => {
+    // Gör en EDIT-request där man skickar med token och produkten man vill ändra
+    const request = await fetch('http://localhost:5000/api/products/' + product._id, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(product)
+    })
+
+    return request.status
+  }
 }

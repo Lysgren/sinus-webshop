@@ -1,37 +1,35 @@
+import API from '@/api'
+
 export default {
   actions: {
     createProduct: async ({ dispatch }, product) => {
-      const userToken = sessionStorage.getItem('token')
+      // Hämtar token från sessionStorage som används vid authorization
+      const token = sessionStorage.getItem('token')
+
+      // Konventerar priset som man får från inputen till ett nummer från en sträng.
       product.price = parseFloat(product.price)
 
-      const request = await fetch('http://localhost:5000/api/products/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${userToken}`
-        },
-        body: JSON.stringify(product)
-      })
-
-      if (request.status == 200) {
+      // Kallar createTheProduct i API:et och skickar med produkten och token
+      const request = await API.createTheProduct(product, token)
+      
+      // Om requesten har gått igenom så kallar man på fetchProducts och returner true
+      if (request == 200) {
         dispatch('fetchProducts', null, { root: true })
         return true
       } else {
         return false
       }
     },
+    // Action får att ta bort en specifik produkt, tar emot ID:et på produkten man kan ta bort.
     deleteProduct: async ({ dispatch }, id) => {
-      const userToken = sessionStorage.getItem('token')
+      // Hämtar token från sessionStorage som används vid authorization
+      const token = sessionStorage.getItem('token')
 
-      const request = await fetch('http://localhost:5000/api/products/' + id, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${userToken}`
-        }
-      })
+      // Kallar deleteTheProduct i API:et och skickar med produktens id och token
+      const request = await API.deleteTheProduct(id, token)
 
-      if (request.status == 200) {
+      // Om requesten har gått igenom så kallar man på fetchProducts och returner true
+      if (request == 200) {
         dispatch('fetchProducts', null, { root: true })
         return true
       } else {
@@ -39,18 +37,14 @@ export default {
       }
     },
     editProduct: async ({ dispatch }, product) => {
-      const userToken = sessionStorage.getItem('token')
+      // Hämtar token från sessionStorage som används vid authorization
+      const token = sessionStorage.getItem('token')
 
-      const request = await fetch('http://localhost:5000/api/products/' + product._id, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${userToken}`
-        },
-        body: JSON.stringify(product)
-      })
+      // Kallar editTheProduct i API:et och skickar med produkten och token
+      const request = await API.editTheProduct(product, token)
 
-      if (request.status == 200) {
+      // Om requesten har gått igenom så kallar man på fetchProducts och returner true
+      if (request == 200) {
         dispatch('fetchProducts', null, { root: true })
         return true
       } else {

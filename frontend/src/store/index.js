@@ -9,19 +9,10 @@ import productsModule from './modules/products.store.js'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-
   modules: {
     admin,
     customerModule,
     ordersModule,
     productsModule
-  },
-
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
- 
+  }
 })
