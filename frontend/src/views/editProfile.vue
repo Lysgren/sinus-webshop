@@ -82,7 +82,7 @@ export default {
       */
       const value = await this.$store.dispatch("updateUser", this.editUser);
       if (value == true) {
-        this.$router.push("/");
+        this.$router.push("/myaccount");
       }
     },
   },
