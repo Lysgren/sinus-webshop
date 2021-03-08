@@ -1,3 +1,5 @@
+import API from "@/api"
+
 export default {
   state: {
     shoppingCart: [],
@@ -11,7 +13,7 @@ export default {
       state.shoppingCart.forEach((item) => (totalAmount += item.amount))
       return totalAmount
     },
-    orderTotal (state) {
+    orderTotal(state) {
       let total = 0
       state.shoppingCart.forEach((item) => (total += item.amount * item.price))
       return total
@@ -66,7 +68,7 @@ export default {
       }
     },
 
-    emptyCart: (state) => state.shoppingCart = []
+    emptyCart: (state) => (state.shoppingCart = []),
   },
   actions: {
     async placeOrder(state, products) {
@@ -74,15 +76,7 @@ export default {
         items: products,
       }
 
-      const request = await fetch("http://localhost:5000/api/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": " application/json",
-        },
-        body: JSON.stringify(payload),
-      })
-
-      const response = await request.json()
+      const response = await API.createOrder(payload)
       return response
     },
 
@@ -93,28 +87,15 @@ export default {
 
       const token = sessionStorage.getItem("token")
 
-      const request = await fetch("http://localhost:5000/api/orders", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": " application/json",
-        },
-        body: JSON.stringify(payload),
-      })
+      const response = await API.createOrderReg(payload, token)
 
-      const response = await request.json()
       return response
     },
 
     async getOrders(context) {
       const token = sessionStorage.getItem("token")
 
-      const request = await fetch("http://localhost:5000/api/orders", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      const responseData = await request.json()
+      const responseData = await API.fetchOrders(token)
       context.commit("setOrders", responseData)
     },
   },

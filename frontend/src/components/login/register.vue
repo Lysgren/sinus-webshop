@@ -17,7 +17,7 @@
       <span v-if="error == true">Information entered incorrectly...</span>
     </form>
     <div class="button-container">
-      <button v-on:click="registerUser">Registrera</button>
+      <button v-on:click="registerUser">Register</button>
     </div>
   </div>
 </template>
